@@ -94,12 +94,12 @@ fun timeForHalfWay(t1: Double, v1: Double,
 {
     var halfDistance = (t1 * v1 + t2 * v2 + t3 * v3) / 2
     if (halfDistance < t1 * v1)
-        return((1.0 - (t1 * v1 - halfDistance) / t1 * v1)  * t1)
+        return((1 - (t1 * v1 - halfDistance) / t1 * v1)  * t1)
     else
         if (halfDistance < t1 * v1 + t2 * v2)
-            return((1.0 - ((t1 * v1 + t2 * v2) - halfDistance) / (t1 * v1 + t2 * v2)) * (t1 + t2))
+            return((1 - ((t1 * v1 + t2 * v2) - halfDistance) / (t1 * v1 + t2 * v2)) * (t1 + t2))
         else
-            return((1.0 - ((t1 * v1 + t2 * v2 + t3 * v3) - halfDistance) /
+            return((1 - ((t1 * v1 + t2 * v2 + t3 * v3) - halfDistance) /
                     (t1 * v1 + t2 * v2 + t3 * v3)) * (t1 + t2 + t3))
 }
 
@@ -119,7 +119,6 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
     var treatness = 0
     if (kingX == rookX2 || kingY == rookY2)
         treatness = 2
-    else
     if (kingX == rookX1 || kingY == rookY1)
         treatness++
     return(treatness)
@@ -148,7 +147,21 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+fun triangleKind(a: Double, b: Double, c: Double): Int
+{
+    if (a + b < c || a + c < b || b + c < a)
+        return(-1)
+    else
+    {
+        if (a * a + b * b < c * c || a * a + c * c < b * b || b * b + c * c < a * a)
+            return(2)
+        else
+            if (a * a + b * b == c * c || a * a + c * c == b * b || b * b + c * c == a * a)
+                return(1)
+        else
+                return(0)
+    }
+}
 
 /**
  * Средняя
