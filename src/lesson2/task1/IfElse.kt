@@ -94,12 +94,13 @@ fun timeForHalfWay(t1: Double, v1: Double,
 {
     var halfDistance = (t1 * v1 + t2 * v2 + t3 * v3) / 2
     if (halfDistance < t1 * v1)
-        return((1 - (t1 * v1 - halfDistance) / t1 * v1)  * t1)
+        return((1.0 - (t1 * v1 - halfDistance) / t1 * v1)  * t1)
     else
         if (halfDistance < t1 * v1 + t2 * v2)
-            return((1 - ((t1 * v1 + t2 * v2) - halfDistance) / (t1 * v1 + t2 * v2)) * (t1 + t2))
+            return((1.0 - ((t1 * v1 + t2 * v2) - halfDistance) / (t1 * v1 + t2 * v2)) * (t1 + t2))
         else
-            return((1 - ((t1 * v1 + t2 * v2 + t3 * v3) - halfDistance) / (t1 * v1 + t2 * v2 + t3 * v3)) * (t1 + t2 + t3))
+            return((1.0 - ((t1 * v1 + t2 * v2 + t3 * v3) - halfDistance) /
+                    (t1 * v1 + t2 * v2 + t3 * v3)) * (t1 + t2 + t3))
 }
 
 /**
