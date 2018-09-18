@@ -20,7 +20,7 @@ fun pointInsideCircle(x: Double, y: Double, x0: Double, y0: Double, r: Double) =
  */
 fun isNumberHappy(number: Int): Boolean
 {
-    return if (number / 1000 + number / 100 % 10 == number % 1000 + number % 100 / 10)
+    return if (number / 1000 + (number / 100) % 10 == number % 1000 + (number % 100) / 10)
         true
     else
         false
@@ -53,10 +53,13 @@ fun daysInMonth(month: Int, year: Int): Int
     if (year % 4 == 0 && month == 2)
         return 29
     else
-        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
-            return 31
+        if (month == 2)
+                return 28
         else
-            return 30
+            if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+                return 31
+            else
+                return 30
 
 
 }
