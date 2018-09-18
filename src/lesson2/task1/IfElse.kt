@@ -2,6 +2,7 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
+import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.sqrt
 
@@ -116,13 +117,13 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX1: Int, rookY1: Int,
                        rookX2: Int, rookY2: Int): Int
 {
-    var treatness = 0
+    var result = 0
     if (kingX == rookX2 || kingY == rookY2)
-        treatness = 2
+        result = 2
     else
     if (kingX == rookX1 || kingY == rookY1)
-        treatness++
-    return(treatness)
+        result++
+    return(result)
 
 }
 
@@ -138,7 +139,15 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
  */
 fun rookOrBishopThreatens(kingX: Int, kingY: Int,
                           rookX: Int, rookY: Int,
-                          bishopX: Int, bishopY: Int): Int = TODO()
+                          bishopX: Int, bishopY: Int): Int
+{
+    var result = 0
+    if (kingX == rookX || kingY == rookY)
+        result = 2
+    if (abs(kingX - bishopX) == abs(kingY - bishopY))
+        result++
+    return (result)
+}
 
 /**
  * Простая
@@ -148,7 +157,21 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+fun triangleKind(a: Double, b: Double, c: Double): Int
+{
+    if (a + b < c || a + c < b || b + c < a)
+        return(-1)
+    else
+    {
+        if (a * a + b * b < c * c || a * a + c * c < b * b || b * b + c * c < a * a)
+            return(2)
+        else
+            if (a * a + b * b == c * c || a * a + c * c == b * b || b * b + c * c == a * a)
+                return(1)
+            else
+                return(0)
+    }
+}
 
 /**
  * Средняя
