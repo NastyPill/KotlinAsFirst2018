@@ -2,6 +2,7 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
+import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.sqrt
 
@@ -137,7 +138,15 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
  */
 fun rookOrBishopThreatens(kingX: Int, kingY: Int,
                           rookX: Int, rookY: Int,
-                          bishopX: Int, bishopY: Int): Int = TODO()
+                          bishopX: Int, bishopY: Int): Int
+{
+    var result = 0
+    if (kingX == rookX || kingY == rookY)
+        result = 2
+    if (abs(kingX - bishopX) == abs(kingY - bishopY))
+        result++
+    return (result)
+}
 
 /**
  * Простая
@@ -171,4 +180,20 @@ fun triangleKind(a: Double, b: Double, c: Double): Int
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = TODO()
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int
+{
+    if (c >= a && d <= b) //cd in ab
+        return (d - c)
+    else
+        if (a >= c && b <= d) //ab in cd
+            return (b - a)
+        else
+            if (c >= a && c <= b) //A---C===B---D
+                return (b - c)
+            else
+                if (a >= c && a <= d)//C---A===D---B
+                    return (d - a)
+                else
+                    return (-1)
+
+}
