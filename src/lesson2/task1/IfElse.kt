@@ -2,7 +2,6 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
-import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.sqrt
 
@@ -95,12 +94,12 @@ fun timeForHalfWay(t1: Double, v1: Double,
 {
     var halfDistance = (t1 * v1 + t2 * v2 + t3 * v3) / 2
     if (halfDistance < t1 * v1)
-        return((1.0 - (t1 * v1 - halfDistance) / t1 * v1)  * t1)
+        return((1 - (t1 * v1 - halfDistance) / t1 * v1)  * t1)
     else
         if (halfDistance < t1 * v1 + t2 * v2)
-            return((1.0 - ((t1 * v1 + t2 * v2) - halfDistance) / (t1 * v1 + t2 * v2)) * (t1 + t2))
+            return((1 - ((t1 * v1 + t2 * v2) - halfDistance) / (t1 * v1 + t2 * v2)) * (t1 + t2))
         else
-            return((1.0 - ((t1 * v1 + t2 * v2 + t3 * v3) - halfDistance) /
+            return((1 - ((t1 * v1 + t2 * v2 + t3 * v3) - halfDistance) /
                     (t1 * v1 + t2 * v2 + t3 * v3)) * (t1 + t2 + t3))
 }
 
@@ -117,13 +116,12 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX1: Int, rookY1: Int,
                        rookX2: Int, rookY2: Int): Int
 {
-    var result = 0
+    var treatness = 0
     if (kingX == rookX2 || kingY == rookY2)
-        result = 2
-    else
+        treatness = 2
     if (kingX == rookX1 || kingY == rookY1)
-        result++
-    return(result)
+        treatness++
+    return(treatness)
 
 }
 
@@ -139,15 +137,7 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
  */
 fun rookOrBishopThreatens(kingX: Int, kingY: Int,
                           rookX: Int, rookY: Int,
-                          bishopX: Int, bishopY: Int): Int
-{
-    var result = 0
-    if (kingX == rookX || kingY == rookY)
-        result = 2
-    if (abs(kingX - bishopX) == abs(kingY - bishopY))
-        result++
-    return (result)
-}
+                          bishopX: Int, bishopY: Int): Int = TODO()
 
 /**
  * Простая
