@@ -97,7 +97,7 @@ fun timeForHalfWay(t1: Double, v1: Double,
 //        else
 //            return((1 - ((t1 * v1 + t2 * v2 + t3 * v3) - halfDistance) /
 //                    (t1 * v1 + t2 * v2 + t3 * v3)) * (t1 + t2 + t3))
-//}
+// }
 
 /**
  * Простая
@@ -174,18 +174,14 @@ fun triangleKind(a: Double, b: Double, c: Double): Int
  */
 fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int
 {
-    if (c >= a && d <= b) //cd in ab
-        return (d - c)
+    return if (c >= a && d <= b)
+        d - c
+    else if (a >= c && b <= d)
+        b - a
+    else if (c in a..b)
+        b - c
+    else if (a in c..d)
+        d - a
     else
-        if (a >= c && b <= d) //ab in cd
-            return (b - a)
-        else
-            if (c >= a && c <= b) //A---C===B---D
-                return (b - c)
-            else
-                if (a >= c && a <= d)//C---A===D---B
-                    return (d - a)
-                else
-                    return (-1)
-
+        -1
 }
