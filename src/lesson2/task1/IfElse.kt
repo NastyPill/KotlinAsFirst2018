@@ -2,6 +2,7 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
+import java.lang.Math.*
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.sqrt
@@ -66,19 +67,13 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
 
 fun ageDescription(age: Int): String
 {
-    if (age % 100 in 11..19)
-        return(age.toString() + " лет")
-    else
-        if (age % 10 in 2..4)
-            return(age.toString() + " года" )
-        else
-            if (age % 10 == 1)
-                return(age.toString() + " год")
-            else
-                if (age % 10 in 5..9)
-                    return(age.toString() + " лет")
-                else
-                    return(age.toString() + " лет")
+    return when
+    {
+        age % 100 in 11..19 -> "$age + лет"
+        age % 10 in 2..4 -> "$age года"
+        age % 10 == 1 -> "$age год"
+        else -> "$age +лет"
+    }
 
 }
 
@@ -91,18 +86,18 @@ fun ageDescription(age: Int): String
  */
 fun timeForHalfWay(t1: Double, v1: Double,
                    t2: Double, v2: Double,
-                   t3: Double, v3: Double): Double
-{
-    var halfDistance = (t1 * v1 + t2 * v2 + t3 * v3) / 2
-    if (halfDistance < t1 * v1)
-        return((1 - (t1 * v1 - halfDistance) / t1 * v1)  * t1)
-    else
-        if (halfDistance < t1 * v1 + t2 * v2)
-            return((1 - ((t1 * v1 + t2 * v2) - halfDistance) / (t1 * v1 + t2 * v2)) * (t1 + t2))
-        else
-            return((1 - ((t1 * v1 + t2 * v2 + t3 * v3) - halfDistance) /
-                    (t1 * v1 + t2 * v2 + t3 * v3)) * (t1 + t2 + t3))
-}
+                   t3: Double, v3: Double): Double = TODO()
+//{
+//    var halfDistance = (t1 * v1 + t2 * v2 + t3 * v3) / 2
+//    if (halfDistance < t1 * v1)
+//        return((1 - (t1 * v1 - halfDistance) / t1 * v1)  * t1)
+//    else
+//        if (halfDistance < t1 * v1 + t2 * v2)
+//            return((1 - ((t1 * v1 + t2 * v2) - halfDistance) / (t1 * v1 + t2 * v2)) * (t1 + t2))
+//        else
+//            return((1 - ((t1 * v1 + t2 * v2 + t3 * v3) - halfDistance) /
+//                    (t1 * v1 + t2 * v2 + t3 * v3)) * (t1 + t2 + t3))
+//}
 
 /**
  * Простая
@@ -158,18 +153,15 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  */
 fun triangleKind(a: Double, b: Double, c: Double): Int
 {
-    if (a + b < c || a + c < b || b + c < a)
-        return(-1)
+    return if (a + b < c || a + c < b || b + c < a)
+        -1
+    else if (a * a + b * b < c * c || a * a + c * c < b * b || b * b + c * c < a * a)
+        2
+    else if (a * a + b * b == c * c || a * a + c * c == b * b || b * b + c * c == a * a)
+        1
     else
-    {
-        if (a * a + b * b < c * c || a * a + c * c < b * b || b * b + c * c < a * a)
-            return(2)
-        else
-            if (a * a + b * b == c * c || a * a + c * c == b * b || b * b + c * c == a * a)
-                return(1)
-            else
-                return(0)
-    }
+        0
+
 }
 
 /**
