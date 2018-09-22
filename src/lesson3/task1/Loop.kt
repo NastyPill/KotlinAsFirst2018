@@ -1,6 +1,8 @@
 @file:Suppress("UNUSED_PARAMETER")
 package lesson3.task1
 
+import lesson1.task1.sqr
+import kotlin.math.round
 import kotlin.math.sqrt
 
 /**
@@ -66,7 +68,21 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
+fun digitNumber(n: Int): Int
+{
+    var ctr = 0
+    var number = n
+    return if (n == 0)
+        1
+    else{
+        while (number > 0){
+            ctr++
+            number /= 10
+        }
+        ctr
+
+    }
+}
 
 /**
  * Простая
@@ -74,7 +90,21 @@ fun digitNumber(n: Int): Int = TODO()
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+fun fib(n: Int): Int {
+    var fib1 = 1
+    var fib2 = 0
+
+    for (m in 2..n)
+        if (m % 2 == 0)
+            fib2 += fib1
+        else
+            fib1 += fib2
+
+    return when{
+        n % 2 == 0 -> fib2
+        else -> fib1
+    }
+}
 
 /**
  * Простая
@@ -82,21 +112,36 @@ fun fib(n: Int): Int = TODO()
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun lcm(m: Int, n: Int): Int = TODO()
+fun lcm(m: Int, n: Int): Int{
+    var num = 1
+    while (num % m != 0 || num % n != 0)
+        num++
+    return num
+}
 
 /**
  * Простая
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int = TODO()
+fun minDivisor(n: Int): Int{
+    var m = 2
+    while (n % m != 0)
+        m++
+    return m
+}
 
 /**
  * Простая
  *
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
-fun maxDivisor(n: Int): Int = TODO()
+fun maxDivisor(n: Int): Int{
+    var m = n - 1
+    while (n % m != 0)
+        m--
+    return m
+}
 
 /**
  * Простая
@@ -105,7 +150,15 @@ fun maxDivisor(n: Int): Int = TODO()
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean = TODO()
+fun isCoPrime(m: Int, n: Int): Boolean{
+    var bool = true
+    for (i in 2..maxOf(m,n))
+    {
+        if (m % i == 0 && n % i == 0)
+            bool =  false
+    }
+    return bool
+}
 
 /**
  * Простая
@@ -114,7 +167,14 @@ fun isCoPrime(m: Int, n: Int): Boolean = TODO()
  * то есть, существует ли такое целое k, что m <= k*k <= n.
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
-fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
+fun squareBetweenExists(m: Int, n: Int): Boolean{
+    var bool = false
+    for (i in 1..sqrt(maxOf(n,m).toDouble()).toInt())
+        if (i*i in m..n)
+            bool = true
+
+    return bool
+}
 
 /**
  * Средняя
@@ -132,7 +192,18 @@ fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
  * Написать функцию, которая находит, сколько шагов требуется для
  * этого для какого-либо начального X > 0.
  */
-fun collatzSteps(x: Int): Int = TODO()
+fun collatzSteps(x: Int): Int{
+    var num = x
+    var ctr = 0
+    while (num != 1) {
+        if (num % 2 == 0)
+            num/=2
+        else
+            num = num * 3 + 1
+        ctr++
+    }
+    return (ctr)
+}
 
 /**
  * Средняя
@@ -152,6 +223,17 @@ fun sin(x: Double, eps: Double): Double = TODO()
  */
 fun cos(x: Double, eps: Double): Double = TODO()
 
+
+
+fun pow(p: Int, n: Int): Int{
+    var num = n
+    for (i in 1..p)
+        num*= num
+    return if (p == 0)
+        1
+    else
+        num
+}
 /**
  * Средняя
  *
@@ -159,7 +241,21 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
+//fun revert(n: Int): Int{
+//    var num = n
+//    var ctr = 0
+//    while (num > 0) {
+//        num /= 10
+//        ctr++
+//    }
+//    num = n
+//    var new = 0
+//    for (i in 1..round((ctr/2).toDouble()).toInt())
+//    {
+//        new = num % pow(i,10) / pow(i-1, 10) * pow(ctr-i+1, 10)
+//    }
+//return new
+//}
 
 /**
  * Средняя
