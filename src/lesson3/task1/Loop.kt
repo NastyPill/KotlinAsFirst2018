@@ -2,6 +2,7 @@
 package lesson3.task1
 
 import lesson1.task1.sqr
+import kotlin.math.abs
 import kotlin.math.round
 import kotlin.math.sqrt
 
@@ -205,6 +206,16 @@ fun collatzSteps(x: Int): Int{
     return (ctr)
 }
 
+fun pow(p: Double, n: Int): Double {
+    var num = n
+    for (i in 1..p.toInt())
+        num*= num
+    return if (p == 0.0)
+        1.0
+    else
+        num.toDouble()
+}
+
 /**
  * Средняя
  *
@@ -212,7 +223,27 @@ fun collatzSteps(x: Int): Int{
  * sin(x) = x - x^3 / 3! + x^5 / 5! - x^7 / 7! + ...
  * Нужную точность считать достигнутой, если очередной член ряда меньше eps по модулю
  */
-fun sin(x: Double, eps: Double): Double = TODO()
+fun sin(x: Double, eps: Double): Double{
+    var num = x
+    var sum = num
+    var ctr = 3
+    var bool = false
+    while (abs(num) >= eps){
+        num = pow(x, ctr)
+        for (i in 1..ctr) //divided by ctr!
+            num /= i
+        ctr+= 2
+        if (bool){
+            sum += num
+            bool = false
+        }
+        else{
+            sum -= num
+            bool = true
+        }
+    }
+    return sum
+}
 
 /**
  * Средняя
@@ -223,17 +254,6 @@ fun sin(x: Double, eps: Double): Double = TODO()
  */
 fun cos(x: Double, eps: Double): Double = TODO()
 
-
-
-fun pow(p: Int, n: Int): Int{
-    var num = n
-    for (i in 1..p)
-        num*= num
-    return if (p == 0)
-        1
-    else
-        num
-}
 /**
  * Средняя
  *
@@ -241,7 +261,7 @@ fun pow(p: Int, n: Int): Int{
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-//fun revert(n: Int): Int{
+fun revert(n: Int): Int = TODO()
 //    var num = n
 //    var ctr = 0
 //    while (num > 0) {
