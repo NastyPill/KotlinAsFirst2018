@@ -261,21 +261,18 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
-//    var num = n
-//    var ctr = 0
-//    while (num > 0) {
-//        num /= 10
-//        ctr++
-//    }
-//    num = n
-//    var new = 0
-//    for (i in 1..round((ctr/2).toDouble()).toInt())
-//    {
-//        new = num % pow(i,10) / pow(i-1, 10) * pow(ctr-i+1, 10)
-//    }
-//return new
-//}
+fun revert(n: Int): Int{
+    var num = n
+    var ctr = 0
+    var new = 0
+    while (num > 0){
+        ctr++
+        num/=10
+    }
+    for (i in 1..ctr)
+        new = num % pow(i, 10) / pow()
+    return new
+}
 
 /**
  * Средняя
