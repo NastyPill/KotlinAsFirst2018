@@ -1,6 +1,7 @@
 @file:Suppress("UNUSED_PARAMETER")
 package lesson3.task1
 
+import kotlinx.html.I
 import lesson1.task1.sqr
 import kotlin.math.abs
 import kotlin.math.round
@@ -206,14 +207,24 @@ fun collatzSteps(x: Int): Int{
     return (ctr)
 }
 
-fun pow(p: Double, n: Int): Double {
+fun powInt(p: Int, n: Int): Int {
     var num = n
-    for (i in 1..p.toInt())
+    for (i in 1..p)
         num*= num
-    return if (p == 0.0)
+    return if (p == 0)
+        1
+    else
+        num
+}
+
+fun powDouble(p: Int, n: Double): Double{
+    var num = n
+    for (i in 1..p)
+        num*= num
+    return if (p == 0)
         1.0
     else
-        num.toDouble()
+        num
 }
 
 /**
@@ -229,7 +240,7 @@ fun sin(x: Double, eps: Double): Double{
     var ctr = 3
     var bool = false
     while (abs(num) >= eps){
-        num = pow(x, ctr)
+        num = powDouble(ctr, x)
         for (i in 1..ctr) //divided by ctr!
             num /= i
         ctr+= 2
@@ -269,8 +280,9 @@ fun revert(n: Int): Int{
         ctr++
         num/=10
     }
+    num = n
     for (i in 1..ctr)
-        new = num % pow(i, 10) / pow()
+        new += (num % powInt((ctr - i + 1), 10) / powInt(i,10))
     return new
 }
 
@@ -283,7 +295,22 @@ fun revert(n: Int): Int{
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun isPalindrome(n: Int): Boolean = TODO()
+fun isPalindrome(n: Int): Boolean{
+    var bool = true
+    var num = n
+    var ctr = 0
+
+    while (num > 0){
+        ctr++
+        num /= 10
+    }
+    num = n
+    for (i in 1..((ctr/2).toDouble()).toInt())
+        if (num % powInt(i, 10) / powInt((i-1), 10) !=
+                num % powInt((ctr - i + 1), 10) / powInt((ctr -i), 10))
+            bool = false
+    return bool
+}
 
 /**
  * Средняя
