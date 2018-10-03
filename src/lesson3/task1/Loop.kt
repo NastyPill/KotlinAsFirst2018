@@ -207,24 +207,18 @@ fun collatzSteps(x: Int): Int{
     return (ctr)
 }
 
-fun powInt(p: Int, n: Int): Int {
-    var num = n
-    for (i in 1..p)
-        num*= num
-    return if (p == 0)
-        1
-    else
-        num
+fun pow(p: Int, n: Int): Int {
+    var num = 1
+    for (i in 0..p)
+        num *= n
+    return num
 }
 
-fun powDouble(p: Int, n: Double): Double{
-    var num = n
-    for (i in 1..p)
-        num*= num
-    return if (p == 0)
-        1.0
-    else
-        num
+fun pow(p: Int, n: Double): Double{
+    var num = 1.0
+    for (i in 0..p)
+        num *= n
+    return num
 }
 
 /**
@@ -236,22 +230,12 @@ fun powDouble(p: Int, n: Double): Double{
  */
 fun sin(x: Double, eps: Double): Double{
     var num = x
-    var sum = num
+    var sum = x
     var ctr = 3
-    var bool = false
     while (abs(num) >= eps){
-        num = powDouble(ctr, x)
-        for (i in 1..ctr) //divided by ctr!
-            num /= i
-        ctr+= 2
-        if (bool){
-            sum += num
-            bool = false
-        }
-        else{
-            sum -= num
-            bool = true
-        }
+        num *= -((x * x) / (ctr * (ctr - 1)))
+        sum += num
+        ctr += 2
     }
     return sum
 }
@@ -263,7 +247,18 @@ fun sin(x: Double, eps: Double): Double{
  * cos(x) = 1 - x^2 / 2! + x^4 / 4! - x^6 / 6! + ...
  * Нужную точность считать достигнутой, если очередной член ряда меньше eps по модулю
  */
-fun cos(x: Double, eps: Double): Double = TODO()
+fun cos(x: Double, eps: Double): Double{
+
+    var num = 1.0
+    var sum = 1.0
+    var ctr = 1
+    while (abs(num) > eps){
+        num *= -((x * x) / (ctr * (ctr + 1)))
+        sum += num
+        ctr += 2
+    }
+    return sum
+}
 
 /**
  * Средняя
@@ -273,16 +268,12 @@ fun cos(x: Double, eps: Double): Double = TODO()
  * Использовать операции со строками в этой задаче запрещается.
  */
 fun revert(n: Int): Int{
-    var num = n
-    var ctr = 0
     var new = 0
+    var num = n
     while (num > 0){
-        ctr++
-        num/=10
-    }
-    num = n
-    for (i in 1..ctr)
-        new += (num % powInt((ctr - i + 1), 10) / powInt(i,10))
+        new = new * 10 + num % 10
+        num /= 10
+   }
     return new
 }
 
@@ -295,22 +286,7 @@ fun revert(n: Int): Int{
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun isPalindrome(n: Int): Boolean{
-    var bool = true
-    var num = n
-    var ctr = 0
-
-    while (num > 0){
-        ctr++
-        num /= 10
-    }
-    num = n
-    for (i in 1..((ctr/2).toDouble()).toInt())
-        if (num % powInt(i, 10) / powInt((i-1), 10) !=
-                num % powInt((ctr - i + 1), 10) / powInt((ctr -i), 10))
-            bool = false
-    return bool
-}
+fun isPalindrome(n: Int): Boolean = (revert(n) == n)
 
 /**
  * Средняя
@@ -320,7 +296,17 @@ fun isPalindrome(n: Int): Boolean{
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun hasDifferentDigits(n: Int): Boolean = TODO()
+fun hasDifferentDigits(n: Int): Boolean{
+    var num = n
+    var digit = num % 10
+    var bool = false
+    for (i in 1..digitNumber(n)-1) {
+        num /= 10
+        if (digit != num % 10)
+            bool = true
+    }
+    return bool
+}
 
 /**
  * Сложная
