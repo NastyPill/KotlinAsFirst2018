@@ -171,7 +171,7 @@ fun isCoPrime(m: Int, n: Int): Boolean{
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean{
     var bool = false
-    for (i in 1..sqrt(maxOf(n,m).toDouble()).toInt())
+    for (i in 0..sqrt(maxOf(n,m).toDouble()).toInt())
         if (i*i in m..n)
             bool = true
 
