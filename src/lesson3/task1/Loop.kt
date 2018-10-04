@@ -77,7 +77,7 @@ fun digitNumber(n: Int): Int
     return if (n == 0)
         1
     else{
-        while (number > 0){
+        while (number != 0){
             ctr++
             number /= 10
         }
