@@ -292,7 +292,13 @@ return result.joinToString (separator = "")
  * из системы счисления с основанием base в десятичную.
  * Например: digits = (1, 3, 12), base = 14 -> 250
  */
-fun decimal(digits: List<Int>, base: Int): Int = TODO()
+fun decimal(digits: List<Int>, base: Int): Int {
+    var result = digits.first()
+    if (digits.size != 1)
+        for (i in 1 until digits.size)
+            result = result * base + digits[i]
+    return result
+}
 
 /**
  * Сложная
@@ -303,7 +309,21 @@ fun decimal(digits: List<Int>, base: Int): Int = TODO()
  * 10 -> a, 11 -> b, 12 -> c и так далее.
  * Например: str = "13c", base = 14 -> 250
  */
-fun decimalFromString(str: String, base: Int): Int = TODO()
+fun decimalFromString(str: String, base: Int): Int {
+    val num = 'a'.toInt()
+    var result = if (str.first().toInt() in 48..59)
+        str.first().toString().toInt()
+    else
+        str.first().toInt() + 10 - num
+    if (str.length != 1)
+    for (i in 1 until str.length) {
+        result = if (str[i].toInt() in 48..59)
+            result * base + str[i].toString().toInt()
+        else
+            result * base + str[i].toInt() + 10 - num
+    }
+    return result
+}
 
 /**
  * Сложная
