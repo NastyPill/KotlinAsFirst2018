@@ -1,10 +1,7 @@
 @file:Suppress("UNUSED_PARAMETER")
 package lesson3.task1
 
-import kotlinx.html.I
-import lesson1.task1.sqr
 import kotlin.math.abs
-import kotlin.math.round
 import kotlin.math.sqrt
 
 /**
@@ -303,7 +300,7 @@ fun hasDifferentDigits(n: Int): Boolean{
     var num = n
     var digit = num % 10
     var bool = false
-    for (i in 1..digitNumber(n)-1) {
+    for (i in 1 until digitNumber(n)) {
         num /= 10
         if (digit != num % 10)
             bool = true
