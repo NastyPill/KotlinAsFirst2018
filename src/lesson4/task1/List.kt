@@ -257,10 +257,14 @@ fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*
 fun convert(n: Int, base: Int): List<Int> {
     var number = n
     val result : MutableList<Int> = mutableListOf()
-    while (number > 0) {
-        result.add(0, number % base)
-        number /= base
-    }
+    if (number != 0)
+        while (number > 0) {
+            result.add(0, number % base)
+            number /= base
+        }
+    else
+        result.add(0,0)
+
     return result
 }
 
@@ -359,7 +363,7 @@ fun russian(n: Int): String {
     val listNum :List<Int> = listOf(900, 800, 700, 600, 500, 400, 300, 200, 100, 90, 80, 70, 60,
             50, 40, 30, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
     val listRussian :List<String> = listOf("девятьсот", "восемьсот", "семьсот", "шестьсот", "пятьсот",
-            "четыреста", "триста", "двести", "сто", "девяноста", "восемьдесят", "семьдесят", "шестьдесят",
+            "четыреста", "триста", "двести", "сто", "девяносто", "восемьдесят", "семьдесят", "шестьдесят",
             "пятьдесят", "сорок", "тридцать", "двадцать", "девятнадцать", "восемьнадцать", "семьнадцать",
             "шестьнадцать", "пятьнадцать", "четырнадцать", "тринадцать", "двенадцать", "одинадцать",
             "десять", "девять", "восемь", "семь", "шесть", "пять", "четыре", "три", "дв", "один")
