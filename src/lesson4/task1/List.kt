@@ -354,4 +354,44 @@ fun roman(n: Int): String {
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
-fun russian(n: Int): String = TODO()
+fun russian(n: Int): String {
+    var result = ""
+    val listNum :List<Int> = listOf(900, 800, 700, 600, 500, 400, 300, 200, 100, 90, 80, 70, 60,
+            50, 40, 30, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
+    val listRussian :List<String> = listOf("девятьсот", "восемьсот", "семьсот", "шестьсот", "пятьсот",
+            "четыреста", "триста", "двести", "сто", "девяноста", "восемьдесят", "семьдесят", "шестьдесят",
+            "пятьдесят", "сорок", "тридцать", "двадцать", "девятнадцать", "восемьнадцать", "семьнадцать",
+            "шестьнадцать", "пятьнадцать", "четырнадцать", "тринадцать", "двенадцать", "одинадцать",
+            "десять", "девять", "восемь", "семь", "шесть", "пять", "четыре", "три", "дв", "один")
+    var hundreds = n % 1000
+    var thousands = n / 1000 % 1000
+    val thousand = thousands % 10
+    if (thousands != 0) {
+        for (i in 0 until listNum.size)
+            if (thousands >= listNum[i]) {
+                result += " " + listRussian[i]
+                thousands -= listNum[i]
+            }
+        result += when (thousand) {
+            1 -> " тысяча"
+            in 2..4 -> {
+                if (thousand == 2 && n / 1000 % 100 != 12)
+                    "е тысячи"
+                else
+                    " тысячи"
+            }
+            in 5..9 -> " тысяч"
+            else -> " тысяч"
+        }
+    }
+    for (i in 0 until listNum.size)
+        if (hundreds >= listNum[i]) {
+            result +=" " + listRussian[i]
+            hundreds -= listNum[i]
+        }
+    result.trim()
+    if (n % 10 == 2 && n % 100 != 12) {
+        result += "а"
+    }
+    return result.trim()
+}
