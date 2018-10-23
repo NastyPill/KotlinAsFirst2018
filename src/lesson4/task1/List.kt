@@ -185,8 +185,8 @@ fun times(a: List<Double>, b: List<Double>): Double {
 fun polynom(p: List<Double>, x: Double): Double {
     var sum = 0.0
     if (p.isNotEmpty())
-       sum = p[p.size-1]
-    for (i in p.size - 2 downTo(0))
+        sum = p[p.size - 1]
+    for (i in p.size - 2 downTo (0))
         sum = sum * x + p[i]
     return sum
 }
@@ -204,12 +204,12 @@ fun polynom(p: List<Double>, x: Double): Double {
 fun accumulate(list: MutableList<Double>): MutableList<Double> {
     var sum = 0.0
     if (list.isNotEmpty())
-    sum = list[0]
+        sum = list[0]
     for (i in 1 until list.size) {
         sum += list[i]
         list[i] = sum
     }
-     return list
+    return list
 }
 
 /**
@@ -256,14 +256,14 @@ fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*
  */
 fun convert(n: Int, base: Int): List<Int> {
     var number = n
-    val result : MutableList<Int> = mutableListOf()
+    val result: MutableList<Int> = mutableListOf()
     if (number != 0)
         while (number > 0) {
             result.add(0, number % base)
             number /= base
         }
     else
-        result.add(0,0)
+        result.add(0, 0)
 
     return result
 }
@@ -277,16 +277,16 @@ fun convert(n: Int, base: Int): List<Int> {
  * Например: n = 100, base = 4 -> 1210, n = 250, base = 14 -> 13c
  */
 fun convertToString(n: Int, base: Int): String {
-    val result : MutableList<String> = mutableListOf()
+    val result: MutableList<String> = mutableListOf()
     val convertInDec = convert(n, base)
     val num = 'a'.toInt()
     for (i in 0 until convert(n, base).size) {
-        if (convertInDec[i] >= 10 )
+        if (convertInDec[i] >= 10)
             result.add((num - 10 + convertInDec[i]).toChar().toString())
         else
             result.add(convertInDec[i].toString())
     }
-return result.joinToString (separator = "")
+    return result.joinToString(separator = "")
 }
 
 /**
@@ -320,12 +320,12 @@ fun decimalFromString(str: String, base: Int): Int {
     else
         str.first().toInt() + 10 - num
     if (str.length != 1)
-    for (i in 1 until str.length) {
-        result = if (str[i].toInt() in 48..59)
-            result * base + str[i].toString().toInt()
-        else
-            result * base + str[i].toInt() + 10 - num
-    }
+        for (i in 1 until str.length) {
+            result = if (str[i].toInt() in 48..59)
+                result * base + str[i].toString().toInt()
+            else
+                result * base + str[i].toInt() + 10 - num
+        }
     return result
 }
 
@@ -339,8 +339,8 @@ fun decimalFromString(str: String, base: Int): Int {
  */
 fun roman(n: Int): String {
     var num = n
-    val listNum :List<Int> = listOf(1000 ,900 ,500 ,400 ,100 ,90 ,50, 40, 10, 9, 5, 4, 1)
-    val listRoman :List<String> = listOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
+    val listNum: List<Int> = listOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+    val listRoman: List<String> = listOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
     var result = ""
     for (i in 0 until listNum.size) {
         while (num >= listNum[i]) {
@@ -360,9 +360,9 @@ fun roman(n: Int): String {
  */
 fun russian(n: Int): String {
     var result = ""
-    val listNum :List<Int> = listOf(900, 800, 700, 600, 500, 400, 300, 200, 100, 90, 80, 70, 60,
+    val listNum: List<Int> = listOf(900, 800, 700, 600, 500, 400, 300, 200, 100, 90, 80, 70, 60,
             50, 40, 30, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
-    val listRussian :List<String> = listOf("девятьсот", "восемьсот", "семьсот", "шестьсот", "пятьсот",
+    val listRussian: List<String> = listOf("девятьсот", "восемьсот", "семьсот", "шестьсот", "пятьсот",
             "четыреста", "триста", "двести", "сто", "девяносто", "восемьдесят", "семьдесят", "шестьдесят",
             "пятьдесят", "сорок", "тридцать", "двадцать", "девятнадцать", "восемнадцать", "семнадцать",
             "шестнадцать", "пятнадцать", "четырнадцать", "тринадцать", "двенадцать", "одинадцать",
@@ -390,7 +390,7 @@ fun russian(n: Int): String {
     }
     for (i in 0 until listNum.size)
         if (hundreds >= listNum[i]) {
-            result +=" " + listRussian[i]
+            result += " " + listRussian[i]
             hundreds -= listNum[i]
         }
     result.trim()

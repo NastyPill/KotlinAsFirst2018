@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson2.task1
 
 import lesson1.task1.discriminant
@@ -66,7 +67,7 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  */
 
 fun ageDescription(age: Int): String {
-    return when{
+    return when {
         age % 100 in 11..19 -> "$age лет"
         age % 10 in 2..4 -> "$age года"
         age % 10 == 1 -> "$age год"
@@ -88,8 +89,8 @@ fun timeForHalfWay(t1: Double, v1: Double,
     var halfDistance: Double = (t1 * v1 + t2 * v2 + t3 * v3) / 2
     var time = 0.0
     if (halfDistance <= t1 * v1)
-            time = halfDistance / v1
-        else{
+        time = halfDistance / v1
+    else {
         halfDistance -= t1 * v1
         time = t1
         if (halfDistance <= t2 * v2)
@@ -119,7 +120,7 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
         treatness = 2
     if (kingX == rookX1 || kingY == rookY1)
         treatness++
-    return(treatness)
+    return (treatness)
 
 }
 
@@ -152,10 +153,13 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int{
-    return if (a + b < c || a + c < b || b + c < a)
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    val max = maxOf(a, b, c)
+    val min = minOf(a, b, c)
+    val mid = a + b + c - max - min
+    return if (max >= min + mid)
         -1
-    else if (a * a + b * b < c * c || a * a + c * c < b * b || b * b + c * c < a * a)
+    else if (min * min + mid * mid < max * max)
         2
     else if (a * a + b * b == c * c || a * a + c * c == b * b || b * b + c * c == a * a)
         1
@@ -172,15 +176,8 @@ fun triangleKind(a: Double, b: Double, c: Double): Int{
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int{
-    return if (c >= a && d <= b)
-        d - c
-    else if (a >= c && b <= d)
-        b - a
-    else if (c in a..b)
-        b - c
-    else if (a in c..d)
-        d - a
-    else
-        -1
-}
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int =
+        if (min(b, d) - max(a, c) >= 0)
+            min(b, d) - max(a, c)
+        else
+            -1
