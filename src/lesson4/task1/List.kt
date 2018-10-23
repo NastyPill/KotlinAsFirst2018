@@ -382,7 +382,7 @@ fun russian(n: Int): String {
                 if (thousand == 2 && n / 1000 % 100 != 12)
                     "е тысячи"
                 else
-                    if (n / 1000 % 100 == 12)
+                    if (n / 1000 % 100 / 10 == 1)
                         " тысяч"
                     else
                         " тысячи"
