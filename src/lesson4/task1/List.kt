@@ -377,7 +377,12 @@ fun russian(n: Int): String {
                 thousands -= listNum[i]
             }
         result += when (thousand) {
-            1 -> "на тысяча"
+            1 -> {
+                if (n / 1000 % 100 != 11)
+                    "на тысяча"
+                else
+                    " тысяч"
+            }
             in 2..4 -> {
                 if (thousand == 2 && n / 1000 % 100 != 12)
                     "е тысячи"
