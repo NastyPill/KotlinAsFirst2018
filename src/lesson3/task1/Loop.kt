@@ -2,6 +2,7 @@
 
 package lesson3.task1
 
+import java.lang.Math.pow
 import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.sqrt
@@ -70,18 +71,13 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  * Использовать операции со строками в этой задаче запрещается.
  */
 fun digitNumber(n: Int): Int {
-    var ctr = 0
+    var ctr = 1
     var number = n
-    return if (n == 0)
-        1
-    else {
-        while (number != 0) {
+        while (number > 9) {
             ctr++
             number /= 10
         }
-        ctr
-
-    }
+        return ctr
 }
 
 /**
@@ -128,8 +124,10 @@ fun lcm(m: Int, n: Int): Int = m / gcd(m, n) * n
  */
 fun minDivisor(n: Int): Int {
     var m = 2
+    if (n % 2 != 0)
+        m = 3
     while (n % m != 0)
-        m++
+        m += 2
     return m
 }
 
@@ -161,7 +159,7 @@ fun squareBetweenExists(m: Int, n: Int): Boolean {
     var bool = false
     for (i in sqrt(minOf(n, m).toDouble()).toInt()..sqrt(maxOf(n, m).toDouble()).toInt())
         if (i * i in m..n)
-            bool = true
+            return true
 
     return bool
 }
@@ -196,13 +194,6 @@ fun collatzSteps(x: Int): Int {
 }
 
 
-fun pow(num: Double, p: Int): Double {
-    var result = 1.0
-    for (i in 1..p)
-        result *= num
-    return result
-}
-
 /**
  * Средняя
  *
@@ -216,8 +207,8 @@ fun sin(x: Double, eps: Double): Double {
     var p = 1
     var ctr = 1
     val num = x % (2 * PI)
-    while (abs(pow(num, p) / factorial(p)) >= eps) {
-        result += ctr * (pow(num, p) / factorial(p))
+    while (abs(pow(num, p.toDouble()) / factorial(p)) >= eps) {
+        result += ctr * (pow(num, p.toDouble()) / factorial(p))
         p += 2
         ctr *= -1
     }
@@ -236,8 +227,8 @@ fun cos(x: Double, eps: Double): Double {
     var p = 0
     var ctr = 1
     val num = x % (2 * PI)
-    while (abs(pow(num, p) / factorial(p)) >= eps) {
-        result += ctr * (pow(num, p) / factorial(p))
+    while (abs(pow(num, p.toDouble()) / factorial(p)) >= eps) {
+        result += ctr * (pow(num, p.toDouble()) / factorial(p))
         p += 2
         ctr *= -1
     }
@@ -286,10 +277,8 @@ fun hasDifferentDigits(n: Int): Boolean {
     var bool = false
     for (i in 1 until digitNumber(n)) {
         num /= 10
-        if (digit != num % 10) {
-            bool = true
-            break
-        }
+        if (digit != num % 10)
+            return true
     }
     return bool
 }
