@@ -210,7 +210,6 @@ fun accumulate(list: MutableList<Double>): MutableList<Double> {
 fun factorize(n: Int): List<Int> {
     var number = n
     val result = mutableListOf<Int>()
-    if (!lesson3.task1.isPrime(n))
         for (i in 2..n) {
             val bool = lesson3.task1.isPrime(i)
             if (bool && number % i == 0)
@@ -221,8 +220,6 @@ fun factorize(n: Int): List<Int> {
             if (number < i)
                 break
         }
-    else
-        result.add(n)
     return result
 }
 
