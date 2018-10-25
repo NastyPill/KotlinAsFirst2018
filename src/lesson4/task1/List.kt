@@ -242,14 +242,14 @@ fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*
 fun convert(n: Int, base: Int): List<Int> {
     var number = n
     val result: MutableList<Int> = mutableListOf()
-    if (number != 0)
-        while (number > 0) {
-            result.add(0, number % base)
-            number /= base
-        }
-    else
+    if (number == 0) {
         result.add(0, 0)
-
+        return result
+    }
+    while (number > 0) {
+        result.add(0, number % base)
+        number /= base
+    }
     return result
 }
 
@@ -261,6 +261,9 @@ fun convert(n: Int, base: Int): List<Int> {
  * строчными буквами: 10 -> a, 11 -> b, 12 -> c и так далее.
  * Например: n = 100, base = 4 -> 1210, n = 250, base = 14 -> 13c
  */
+
+//Исправлю немного позже (постараюсь до дэдлайна)
+
 fun convertToString(n: Int, base: Int): String {
     val result: MutableList<String> = mutableListOf()
     val convertInDec = convert(n, base)
@@ -299,19 +302,17 @@ fun decimal(digits: List<Int>, base: Int): Int {
  * Например: str = "13c", base = 14 -> 250
  */
 fun decimalFromString(str: String, base: Int): Int {
-    val num = 'a'.toInt()
-    var result = if (str.first().toInt() in 48..59)
-        str.first().toString().toInt()
-    else
-        str.first().toInt() + 10 - num
-    if (str.length != 1)
-        for (i in 1 until str.length) {
-            result = if (str[i].toInt() in 48..59)
-                result * base + str[i].toString().toInt()
-            else
-                result * base + str[i].toInt() + 10 - num
-        }
-    return result
+    val numA = 'a'.toInt()
+    val zeroInASCII = 48
+    val nineInASCII = 59
+    val list: MutableList<Int> = mutableListOf()
+    for (i in 0 until str.length) {
+        if (str[i].toInt() in zeroInASCII..nineInASCII)
+            list.add(str[i].toString().toInt())
+        else
+            list.add(str[i].toInt() + 10 - numA)
+    }
+    return decimal(list, base)
 }
 
 /**
@@ -326,14 +327,14 @@ fun roman(n: Int): String {
     var num = n
     val listNum: List<Int> = listOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
     val listRoman: List<String> = listOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
-    var result = ""
+    var result: MutableList<String> = mutableListOf()
     for (i in 0 until listNum.size) {
         while (num >= listNum[i]) {
             num -= listNum[i]
-            result += listRoman[i]
+            result.add(listRoman[i])
         }
     }
-    return result
+    return result.joinToString (separator = "")
 }
 
 /**
@@ -343,6 +344,8 @@ fun roman(n: Int): String {
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
+
+//исправлю чуть позже (постараюсь до дэдлайна)
 fun russian(n: Int): String {
     var result = ""
     val listNum: List<Int> = listOf(900, 800, 700, 600, 500, 400, 300, 200, 100, 90, 80, 70, 60,
