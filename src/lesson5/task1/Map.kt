@@ -94,8 +94,15 @@ fun buildWordSet(text: List<String>): MutableSet<String> {
  *     mapOf("Emergency" to "911", "Police" to "02")
  *   ) -> mapOf("Emergency" to "112, 911", "Police" to "02")
  */
-fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> = TODO()
-
+fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> {
+    var res = mapA + mapB
+    var result: MutableMap<String, String> = mutableMapOf()
+    mapB.forEach {
+        if (res[it.key] != it.value)
+            result[it.key] = "${it.value} , ${result[it.key]}"
+    }
+    return result
+}
 /**
  * Простая
  *
@@ -106,7 +113,17 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
  *   buildGrades(mapOf("Марат" to 3, "Семён" to 5, "Михаил" to 5))
  *     -> mapOf(5 to listOf("Семён", "Михаил"), 3 to listOf("Марат"))
  */
-fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> = TODO()
+fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> {
+    var result: MutableMap<Int, MutableList<String>> = mutableMapOf()
+    var res: MutableMap<Int, List<String>> = mutableMapOf()
+    grades.forEach {
+        result.getOrPut(it.value, ::mutableListOf).add(it.key)
+    }
+    for ((key, value) in result) {
+        res[key] = value.toList().sortedDescending()
+    }
+    return res
+}
 
 /**
  * Простая
@@ -118,7 +135,7 @@ fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> = TODO()
  *   containsIn(mapOf("a" to "z"), mapOf("a" to "z", "b" to "sweet")) -> true
  *   containsIn(mapOf("a" to "z"), mapOf("a" to "zee", "b" to "sweet")) -> false
  */
-fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean = TODO()
+fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean = a + b == b + a
 
 /**
  * Средняя
@@ -130,7 +147,25 @@ fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean = TODO()
  *   averageStockPrice(listOf("MSFT" to 100.0, "MSFT" to 200.0, "NFLX" to 40.0))
  *     -> mapOf("MSFT" to 150.0, "NFLX" to 40.0)
  */
-fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Double> = TODO()
+fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Double> {
+    var temp: MutableMap<String, Double> = mutableMapOf()
+    var res: MutableMap<String, Double> = mutableMapOf()
+    for (i in 0 until stockPrices.size)
+        temp[stockPrices[i].first] = 0.0
+    temp.forEach {
+        var sum = 0.0
+        var ctr = 0
+        for (i in 0 until stockPrices.size) {
+            if (it.key == stockPrices[i].first) {
+                ctr++
+                sum += stockPrices[i].second
+            }
+        }
+        sum /= ctr
+        res[it.key] = sum
+    }
+    return res
+}
 
 /**
  * Средняя
@@ -147,7 +182,10 @@ fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Doub
  *     "печенье"
  *   ) -> "Мария"
  */
-fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String? = TODO()
+fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String? {
+    return stuff.filter {it.value.first == kind}.minBy {(_, data) -> data.second}?.component1()
+
+}
 
 /**
  * Сложная
@@ -189,14 +227,14 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
  *   subtractOf(a = mutableMapOf("a" to "z"), mapOf("a" to "z"))
  *     -> a changes to mutableMapOf() aka becomes empty
  */
-fun subtractOf(a: MutableMap<String, String>, b: Map<String, String>): Unit = TODO()
+fun subtractOf(a: MutableMap<String, String>, b: Map<String, String>) = a.keys.removeIf{a[it] == b[it]}
 
 /**
  * Простая
  *
  * Для двух списков людей найти людей, встречающихся в обоих списках
  */
-fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = TODO()
+fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = a.intersect(b).toList()
 
 /**
  * Средняя
