@@ -5,6 +5,7 @@ package lesson4.task1
 import lesson1.task1.discriminant
 import lesson1.task1.sqr
 import java.io.File.separator
+import java.lang.StringBuilder
 import kotlin.math.sqrt
 
 /**
@@ -147,8 +148,8 @@ fun mean(list: List<Double>): Double {
  */
 fun center(list: MutableList<Double>): MutableList<Double> {
     var sum = list.sum() / list.size
-        for (i in 0 until list.size)
-            list[i] -= sum
+    for (i in 0 until list.size)
+        list[i] -= sum
     return list
 }
 
@@ -211,12 +212,12 @@ fun factorize(n: Int): List<Int> {
     var number = n
     val result = mutableListOf<Int>()
         for (i in 2..n) {
-            val bool = lesson3.task1.isPrime(i)
-            if (bool && number % i == 0)
-                while (number % i == 0) {
-                    result.add(i)
-                    number /= i
-                }
+            var bool = (number % i == 0)
+            while (bool) {
+                result.add(i)
+                number /= i
+                bool = (number % i == 0)
+            }
             if (number < i)
                 break
         }
@@ -246,11 +247,12 @@ fun convert(n: Int, base: Int): List<Int> {
         result.add(0, 0)
         return result
     }
+    //я долго думал, как перестроить цикл, так ничего и не придумал
     while (number > 0) {
-        result.add(0, number % base)
+        result.add(number % base)
         number /= base
     }
-    return result
+    return result.reversed()
 }
 
 /**
@@ -302,15 +304,12 @@ fun decimal(digits: List<Int>, base: Int): Int {
  * Например: str = "13c", base = 14 -> 250
  */
 fun decimalFromString(str: String, base: Int): Int {
-    val numA = 'a'.toInt()
-    val zeroInASCII = 48
-    val nineInASCII = 59
     val list: MutableList<Int> = mutableListOf()
     for (i in 0 until str.length) {
-        if (str[i].toInt() in zeroInASCII..nineInASCII)
+        if (str[i] in '0'..'9')
             list.add(str[i].toString().toInt())
         else
-            list.add(str[i].toInt() + 10 - numA)
+            list.add(str[i] - 'a' + 10)
     }
     return decimal(list, base)
 }
@@ -347,52 +346,37 @@ fun roman(n: Int): String {
 
 //исправлю чуть позже (постараюсь до дэдлайна)
 fun russian(n: Int): String {
-    var result = ""
+    var result =  StringBuilder()
     val listNum: List<Int> = listOf(900, 800, 700, 600, 500, 400, 300, 200, 100, 90, 80, 70, 60,
             50, 40, 30, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
     val listRussian: List<String> = listOf("девятьсот", "восемьсот", "семьсот", "шестьсот", "пятьсот",
             "четыреста", "триста", "двести", "сто", "девяносто", "восемьдесят", "семьдесят", "шестьдесят",
             "пятьдесят", "сорок", "тридцать", "двадцать", "девятнадцать", "восемнадцать", "семнадцать",
             "шестнадцать", "пятнадцать", "четырнадцать", "тринадцать", "двенадцать", "одиннадцать",
-            "десять", "девять", "восемь", "семь", "шесть", "пять", "четыре", "три", "дв", "од")
+            "десять", "девять", "восемь", "семь", "шесть", "пять", "четыре", "три")
+    val listRussianThousand: List<String> = listRussian + "две" + "одна"
+    val listRussianHundreds: List<String> = listRussian + "два" + "один"
     var hundreds = n % 1000
     var thousands = n / 1000 % 1000
     val thousand = thousands % 10
     if (thousands != 0) {
         for (i in 0 until listNum.size)
             if (thousands >= listNum[i]) {
-                result += " " + listRussian[i]
+                result.append(" " + listRussianThousand[i])
                 thousands -= listNum[i]
             }
-        result += when (thousand) {
-            1 -> {
-                if (n / 1000 % 100 != 11)
-                    "на тысяча"
-                else
-                    " тысяч"
-            }
-            in 2..4 -> {
-                if (thousand == 2 && n / 1000 % 100 != 12)
-                    "е тысячи"
-                else
-                    if (n / 1000 % 100 / 10 == 1)
-                        " тысяч"
-                    else
-                        " тысячи"
-            }
+        result.append(when (thousand) {
+            1 -> " тысяча"
+            in 2..4 -> " тысячи"
             in 5..9 -> " тысяч"
             else -> " тысяч"
-        }
+        })
     }
     for (i in 0 until listNum.size)
         if (hundreds >= listNum[i]) {
-            result += " " + listRussian[i]
+            result.append(" " + listRussianHundreds[i])
             hundreds -= listNum[i]
         }
     result.trim()
-    if (n % 10 == 2 && n % 100 != 12)
-        result += "а"
-    if (n % 10 == 1 && n % 100 != 11)
-        result += "ин"
-    return result.trim()
+    return result.toString().trim()
 }

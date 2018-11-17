@@ -2,6 +2,7 @@
 
 package lesson3.task1
 
+import lesson1.task1.sqr
 import java.lang.Math.pow
 import kotlin.math.PI
 import kotlin.math.abs
@@ -72,12 +73,12 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  */
 fun digitNumber(n: Int): Int {
     var ctr = 1
-    var number = n
-        while (number > 9) {
-            ctr++
-            number /= 10
-        }
-        return ctr
+    var number = abs(n)
+    while (number > 9) {
+        ctr++
+        number /= 10
+    }
+    return ctr
 }
 
 /**
@@ -207,10 +208,12 @@ fun sin(x: Double, eps: Double): Double {
     var p = 1
     var ctr = 1
     val num = x % (2 * PI)
-    while (abs(pow(num, p.toDouble()) / factorial(p)) >= eps) {
-        result += ctr * (pow(num, p.toDouble()) / factorial(p))
+    var op = pow(num, p.toDouble()) / factorial(p)
+    while (abs(op) >= eps) {
+        result += ctr * (op)
         p += 2
         ctr *= -1
+        op = pow(num, p.toDouble()) / factorial(p)
     }
     return result
 }
@@ -227,10 +230,12 @@ fun cos(x: Double, eps: Double): Double {
     var p = 0
     var ctr = 1
     val num = x % (2 * PI)
-    while (abs(pow(num, p.toDouble()) / factorial(p)) >= eps) {
-        result += ctr * (pow(num, p.toDouble()) / factorial(p))
+    var op = pow(num, p.toDouble()) / factorial(p)
+    while (abs(op) >= eps) {
+        result += ctr * (op)
         p += 2
         ctr *= -1
+        op = pow(num, p.toDouble()) / factorial(p)
     }
     return result
 }
@@ -292,19 +297,21 @@ fun hasDifferentDigits(n: Int): Boolean {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int {
+fun sequenceDigit(n: Int, function: (Int) -> Int): Int {
     var sum = 0
     var num = 0
     while (n > sum) {
         num++
-        sum += digitNumber(num * num)
+        sum += digitNumber(function(num))
     }
-    num *= num
+    num = function(num)
     sum -= n
     for (i in 1..sum)
         num /= 10
     return num % 10
 }
+
+fun squareSequenceDigit(n: Int): Int = sequenceDigit(n, ::sqr)
 
 /**
  * Сложная
@@ -316,28 +323,5 @@ fun squareSequenceDigit(n: Int): Int {
  * Использовать операции со строками в этой задаче запрещается.
  */
 //Сделаю немного позже.
-fun fibSequenceDigit(n: Int): Int {
-    var sum = 1
-    var fib1 = 1
-    var fib2 = 0
-    var bool = false
-    while (n > sum) {
-        if (bool) {
-            fib2 += fib1
-            sum += digitNumber(fib2)
-            bool = false
-        } else {
-            fib1 += fib2
-            sum += digitNumber(fib2)
-            bool = true
-        }
-    }
-    var num = fib1
-    if (bool)
-        num = fib2
-    sum -= n
-    if (digitNumber(num) != 1)
-        for (i in 1..digitNumber(num) - sum)
-            num /= 10
-    return num % 10
-}
+fun fibSequenceDigit(n: Int): Int = sequenceDigit(n, ::fib)
+

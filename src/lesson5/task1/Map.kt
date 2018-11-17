@@ -95,13 +95,13 @@ fun buildWordSet(text: List<String>): MutableSet<String> {
  *   ) -> mapOf("Emergency" to "112, 911", "Police" to "02")
  */
 fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> {
-    var res = mapA + mapB
+    var res = mapB + mapA
     var result: MutableMap<String, String> = mutableMapOf()
-    mapB.forEach {
-        if (res[it.key] != it.value)
-            result[it.key] = "${it.value} , ${result[it.key]}"
+    for((key, value) in mapB) {
+        if (res[key] != value)
+            result[key] = "${res[key]}, $value"
     }
-    return result
+    return res + result
 }
 /**
  * Простая
@@ -113,17 +113,8 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
  *   buildGrades(mapOf("Марат" to 3, "Семён" to 5, "Михаил" to 5))
  *     -> mapOf(5 to listOf("Семён", "Михаил"), 3 to listOf("Марат"))
  */
-fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> {
-    var result: MutableMap<Int, MutableList<String>> = mutableMapOf()
-    var res: MutableMap<Int, List<String>> = mutableMapOf()
-    grades.forEach {
-        result.getOrPut(it.value, ::mutableListOf).add(it.key)
-    }
-    for ((key, value) in result) {
-        res[key] = value.toList().sortedDescending()
-    }
-    return res
-}
+fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> = grades.toList().groupBy({it.second}, {it.first})
+        .mapValues {it.value.sortedByDescending { it }}
 
 /**
  * Простая
@@ -135,7 +126,8 @@ fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> {
  *   containsIn(mapOf("a" to "z"), mapOf("a" to "z", "b" to "sweet")) -> true
  *   containsIn(mapOf("a" to "z"), mapOf("a" to "zee", "b" to "sweet")) -> false
  */
-fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean = a + b == b + a
+fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean = b.keys.toList().containsAll(a.keys.toList())
+        && b.values.toList().containsAll(a.values.toList())
 
 /**
  * Средняя
@@ -182,10 +174,10 @@ fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Doub
  *     "печенье"
  *   ) -> "Мария"
  */
-fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String? {
-    return stuff.filter {it.value.first == kind}.minBy {(_, data) -> data.second}?.component1()
+fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String? =
+        stuff.filter {it.value.first == kind}.minBy {(_, data) -> data.second}?.component1()
 
-}
+
 
 /**
  * Сложная
@@ -245,7 +237,7 @@ fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = a.intersect(b
  * Например:
  *   canBuildFrom(listOf('a', 'b', 'o'), "baobab") -> true
  */
-fun canBuildFrom(chars: List<Char>, word: String): Boolean = TODO()
+fun canBuildFrom(chars: List<Char>, word: String): Boolean = chars.sorted().toSet().containsAll(word.toSet())
 
 /**
  * Средняя
