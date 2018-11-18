@@ -3,7 +3,8 @@
 package lesson6.task1
 
 import lesson2.task2.daysInMonth
-import java.lang.StringBuilder
+import java.lang.IllegalArgumentException
+
 
 /**
  * Пример
@@ -74,11 +75,12 @@ fun main(args: Array<String>) {
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30.02.2009) считается неверными
  * входными данными.
  */
+val months: List<String> = listOf("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа",
+        "сентрября", "октября", "ноября", "декабря")
+
 fun dateStrToDigit(str: String): String {
     try {
         val date = str.split(" ")
-        val months: List<String> = listOf("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа",
-                "сентрября", "октября", "ноября", "декабря")
         if (date.size != 3)
             return ""
         val month = months.indexOf(date[1]) + 1
@@ -107,7 +109,21 @@ fun dateStrToDigit(str: String): String {
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30 февраля 2009) считается неверными
  * входными данными.
  */
-fun dateDigitToStr(digital: String): String = TODO()
+fun dateDigitToStr(digital: String): String {
+    try {
+        if (Regex("""\d{2}\.\d{2}\.\d+""").matches(digital)) {
+            var date = digital.split(".")
+            var month = months.elementAt(date[1].toInt() - 1)
+            if (date[0].toInt() > daysInMonth(date[1].toInt(), date[2].toInt()))
+                return ""
+            return String.format("%d %s %s", date[0].toInt(), month, date[2])
+        }
+        return ""
+    }
+    catch (e: Exception) {
+        return ""
+    }
+}
 
 /**
  * Средняя
@@ -121,7 +137,12 @@ fun dateDigitToStr(digital: String): String = TODO()
  * Все символы в номере, кроме цифр, пробелов и +-(), считать недопустимыми.
  * При неверном формате вернуть пустую строку
  */
-fun flattenPhoneNumber(phone: String): String = TODO()
+fun flattenPhoneNumber(phone: String): String = if (
+        Regex("""\+?\s*(\([\d+(\-*)|(\s*)]\))*\s*([\d+(\-+)|(\s*)])+""")
+                .matches(phone))
+        Regex("""(\s)|([\-])|(\()|(\))""").replace(phone, "")
+    else
+        ""
 
 /**
  * Средняя
@@ -133,7 +154,24 @@ fun flattenPhoneNumber(phone: String): String = TODO()
  * Прочитать строку и вернуть максимальное присутствующее в ней число (717 в примере).
  * При нарушении формата входной строки или при отсутствии в ней чисел, вернуть -1.
  */
-fun bestLongJump(jumps: String): Int = TODO()
+fun getAllJumps(jumps: String): String = Regex("""(-)|(\s)|(%)""")
+        .replace(jumps, " ").replace(Regex("""\s+"""), " ")
+
+fun bestLongJump(jumps: String): Int {
+    return try {
+        var listOfJumps = getAllJumps(jumps).split(" ")
+        var max = -1
+        for (i in 0 until listOfJumps.size) {
+            if (listOfJumps.elementAt(i) == "") break
+            val element = listOfJumps.elementAt(i).toInt()
+            if (max < element)
+                max = element
+        }
+        max
+    } catch (e: Exception) {
+        -1
+    }
+}
 
 /**
  * Сложная
@@ -145,18 +183,20 @@ fun bestLongJump(jumps: String): Int = TODO()
  * Прочитать строку и вернуть максимальную взятую высоту (230 в примере).
  * При нарушении формата входной строки вернуть -1.
  */
-fun bestHighJump(jumps: String): Int = TODO()
-
-/**
- * Сложная
- *
- * В строке представлено выражение вида "2 + 31 - 40 + 13",
- * использующее целые положительные числа, плюсы и минусы, разделённые пробелами.
- * Наличие двух знаков подряд "13 + + 10" или двух чисел подряд "1 2" не допускается.
- * Вернуть значение выражения (6 для примера).
- * Про нарушении формата входной строки бросить исключение IllegalArgumentException
- */
-fun plusMinus(expression: String): Int = TODO()
+fun bestHighJump(jumps: String): Int {
+    return if(Regex("""(\d+(\s*\+*\%*-*)*\s*)+""").matches(jumps)) {
+        val list = jumps.split(" ")
+        var max = -1;
+        for (i in 0 until list.size step 2) {
+            val height = list.elementAt(i).toInt()
+            val tries = list.elementAt(i + 1)
+            if (max < height && tries.contains('+'))
+                max = height
+        }
+        max
+    } else
+        -1
+}
 
 /**
  * Сложная
@@ -167,7 +207,44 @@ fun plusMinus(expression: String): Int = TODO()
  * Вернуть индекс начала первого повторяющегося слова, или -1, если повторов нет.
  * Пример: "Он пошёл в в школу" => результат 9 (индекс первого 'в')
  */
-fun firstDuplicateIndex(str: String): Int = TODO()
+fun firstDuplicateIndex(str: String): Int {
+    val list = str.toLowerCase().split(" ")
+    var index = 0;
+    for (i in 0 until  list.size - 1) {
+        val element1 = list.elementAt(i)
+        val element2 = list.elementAt(i + 1)
+        if(element1.compareTo(element2) == 0)
+            return index
+        index += element1.length + 1
+    }
+    return -1
+}
+
+/**
+ * Сложная
+ *
+ * В строке представлено выражение вида "2 + 31 - 40 + 13",
+ * использующее целые положительные числа, плюсы и минусы, разделённые пробелами.
+ * Наличие двух знаков подряд "13 + + 10" или двух чисел подряд "1 2" не допускается.
+ * Вернуть значение выражения (6 для примера).
+ * Про нарушении формата входной строки бросить исключение IllegalArgumentException
+ */
+fun plusMinus(expression: String): Int {
+        if(Regex("""(^\d+$)|(((\d+\s\+\s)|(\d+\s-\s))+\d+$)""").matches(expression)) {
+            Regex("""\s*""").replace(expression, " ")
+            var listOfElements = expression.split(" ")
+            var sum = listOfElements.elementAt(0).toInt()
+            for (i in 2 until listOfElements.size step 2) {
+                if(listOfElements.elementAt(i-1) == "-")
+                    sum -= listOfElements.elementAt(i).toInt()
+                else
+                    sum += listOfElements.elementAt(i).toInt()
+            }
+            return sum
+        }
+        else
+            throw IllegalArgumentException()
+}
 
 /**
  * Сложная
@@ -180,7 +257,25 @@ fun firstDuplicateIndex(str: String): Int = TODO()
  * или пустую строку при нарушении формата строки.
  * Все цены должны быть больше либо равны нуля.
  */
-fun mostExpensive(description: String): String = TODO()
+fun mostExpensive(description: String): String {
+    try {
+        var list = Regex(""";""").replace(description, "").split(" ")
+        var max = -1.0
+        var result = ""
+        for (i in 0 until list.size - 1 step 2) {
+            val element = list.elementAt(i + 1).toDouble()
+            if(element > max) {
+                max = element
+                result = list.elementAt(i)
+            }
+
+        }
+        return result
+}
+    catch (e: Exception) {
+    return ""
+    }
+}
 
 /**
  * Сложная
@@ -193,7 +288,18 @@ fun mostExpensive(description: String): String = TODO()
  *
  * Вернуть -1, если roman не является корректным римским числом
  */
-fun fromRoman(roman: String): Int = TODO()
+val pairRoman = listOf<Pair<String, Int>>("M" to 1000, "CM" to 900, "D" to 500, "CD" to 400, "C" to 100,
+        "XC" to 90, "L" to 50, "XL" to 40, "X" to 10, "IX" to 9, "V" to 5, "IV" to 4, "I" to 1)
+
+fun fromRoman(roman: String): Int {
+    if(Regex("""M*[CM]*D*[CD]*C*[XC]*L*[XL]*X*[IX]*V*[IV]*I*""").matches(roman)) {
+        var i = 0
+        var sum = 0
+        while (i < roman.length) {
+            if(pairRoman)
+        }
+    return -1
+}
 
 /**
  * Очень сложная

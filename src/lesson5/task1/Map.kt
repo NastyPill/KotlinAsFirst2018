@@ -144,17 +144,17 @@ fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Doub
     var res: MutableMap<String, Double> = mutableMapOf()
     for (i in 0 until stockPrices.size)
         temp[stockPrices[i].first] = 0.0
-    temp.forEach {
+    for((key, value) in temp) {
         var sum = 0.0
         var ctr = 0
         for (i in 0 until stockPrices.size) {
-            if (it.key == stockPrices[i].first) {
+            if (key == stockPrices[i].first) {
                 ctr++
                 sum += stockPrices[i].second
             }
         }
         sum /= ctr
-        res[it.key] = sum
+        res[key] = sum
     }
     return res
 }
@@ -251,7 +251,20 @@ fun canBuildFrom(chars: List<Char>, word: String): Boolean = chars.sorted().toSe
  * Например:
  *   extractRepeats(listOf("a", "b", "a")) -> mapOf("a" to 2)
  */
-fun extractRepeats(list: List<String>): Map<String, Int> = TODO()
+fun extractRepeats(list: List<String>): Map<String, Int> {
+    var setOfElements = list.toSet()
+    var resMap = mutableMapOf<String, Int>()
+    for (i in 0 until setOfElements.size) {
+        var ctr = 0;
+        for (j in 0 until list.size) {
+            if(list[j] == setOfElements.elementAt(i))
+                ctr++
+        }
+        if (ctr > 1)
+            resMap[setOfElements.elementAt(i)] = ctr
+    }
+    return resMap
+}
 
 /**
  * Средняя
@@ -262,8 +275,13 @@ fun extractRepeats(list: List<String>): Map<String, Int> = TODO()
  * Например:
  *   hasAnagrams(listOf("тор", "свет", "рот")) -> true
  */
-fun hasAnagrams(words: List<String>): Boolean = TODO()
-
+fun hasAnagrams(words: List<String>): Boolean {
+    var size = words.size
+    var setOfWords = mutableSetOf<MutableList<Char>>()
+    for (i in 0 until words.size)
+        setOfWords.add(words[i].toMutableList().sorted() as MutableList<Char>)
+    return (size != setOfWords.size)
+}
 /**
  * Сложная
  *
@@ -281,7 +299,15 @@ fun hasAnagrams(words: List<String>): Boolean = TODO()
  *   findSumOfTwo(listOf(1, 2, 3), 4) -> Pair(0, 2)
  *   findSumOfTwo(listOf(1, 2, 3), 6) -> Pair(-1, -1)
  */
-fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> = TODO()
+fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
+    var setOfNums = list.toSet()
+    for (element in setOfNums) {
+        val newSet = setOfNums - element
+        if (number - element in newSet)
+            return list.indexOf(element) to list.indexOf(number - element)
+    }
+    return -1 to -1
+}
 
 /**
  * Очень сложная
