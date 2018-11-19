@@ -288,19 +288,20 @@ fun mostExpensive(description: String): String {
  *
  * Вернуть -1, если roman не является корректным римским числом
  */
-val pairRoman = listOf<Pair<String, Int>>("M" to 1000, "CM" to 900, "D" to 500, "CD" to 400, "C" to 100,
-        "XC" to 90, "L" to 50, "XL" to 40, "X" to 10, "IX" to 9, "V" to 5, "IV" to 4, "I" to 1)
+
+val romanToArab = mapOf<Char, Int>('M' to 1000, 'D' to 500, 'C' to 100,
+        'L' to 50, 'X' to 10, 'V' to 5, 'I' to 1)
 
 fun fromRoman(roman: String): Int {
-    if(Regex("""M*[CM]*D*[CD]*C*[XC]*L*[XL]*X*[IX]*V*[IV]*I*""").matches(roman)) {
+    if (Regex("""M*[CM]?D?[CD]?C{0,3}[XC]?L?[XL]?X{0,3}[IX]?V?[IV]?I{0,3}""")
+                    .matches(roman)) {
         var i = 0
         var sum = 0
-        while (i < roman.length) {
-            if(pairRoman)
+        while (i < roman.length - 1) {
+            if (romanToArab.containsKey(roman[i]) && roman[i + 1] == "" )
         }
-    return -1
+    }
 }
-
 /**
  * Очень сложная
  *
