@@ -289,18 +289,25 @@ fun mostExpensive(description: String): String {
  * Вернуть -1, если roman не является корректным римским числом
  */
 
-val romanToArab = mapOf<Char, Int>('M' to 1000, 'D' to 500, 'C' to 100,
-        'L' to 50, 'X' to 10, 'V' to 5, 'I' to 1)
+val romanList = listOf<String>("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V",  "IV", "I")
+val decimalList = listOf<Int>(1000, 900 ,500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
 
 fun fromRoman(roman: String): Int {
-    if (Regex("""M*[CM]?D?[CD]?C{0,3}[XC]?L?[XL]?X{0,3}[IX]?V?[IV]?I{0,3}""")
-                    .matches(roman)) {
-        var i = 0
+    return if (Regex("""M*(CM)?(D|(CD))?C{0,3}(XC)?(L|(XL))?X{0,3}(IX)?(V|(IV))?I{0,3}""").matches(roman)) {
         var sum = 0
+        var i = 0
         while (i < roman.length - 1) {
-            if (romanToArab.containsKey(roman[i]) && roman[i + 1] == "" )
+            if(romanList.indexOf(roman[i].toString()) > romanList.indexOf(roman[i + 1].toString()))
+                sum -= decimalList.elementAt(romanList.indexOf(roman[i].toString()))
+            else
+                sum += decimalList.elementAt(romanList.indexOf(roman[i].toString()))
+            i++
         }
-    }
+        sum += decimalList.elementAt(romanList.indexOf(roman.last().toString()))
+        sum
+    } else
+        -1
+    return -1
 }
 /**
  * Очень сложная
