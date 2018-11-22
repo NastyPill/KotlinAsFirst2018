@@ -365,12 +365,16 @@ fun russian(n: Int): String {
                 result.append(" " + listRussianThousand[i])
                 thousands -= listNum[i]
             }
-        result.append(when (thousand) {
-            1 -> " тысяча"
-            in 2..4 -> " тысячи"
-            in 5..9 -> " тысяч"
-            else -> " тысяч"
-        })
+        thousands = n / 1000 % 1000
+        if (thousands % 100 !in 10..19) {
+            result.append(when (thousand) {
+                1 -> " тысяча"
+                in 2..4 -> " тысячи"
+                else -> " тысяч"
+            })
+        }
+        else
+            result.append(" тысяч")
     }
     for (i in 0 until listNum.size)
         if (hundreds >= listNum[i]) {
