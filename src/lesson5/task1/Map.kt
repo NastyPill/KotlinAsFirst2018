@@ -237,7 +237,15 @@ fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = a.intersect(b
  * Например:
  *   canBuildFrom(listOf('a', 'b', 'o'), "baobab") -> true
  */
-fun canBuildFrom(chars: List<Char>, word: String): Boolean = chars.sorted().toSet().containsAll(word.toSet())
+fun canBuildFrom(chars: List<Char>, word: String): Boolean {
+    var charSet = mutableSetOf<Char>()
+    var wordSet = mutableSetOf<Char>()
+    for(char in chars)
+        charSet.add(char.toLowerCase())
+    for(char in word)
+        wordSet.add(char.toLowerCase())
+    return charSet.containsAll(wordSet)
+}
 
 /**
  * Средняя
@@ -278,9 +286,14 @@ fun extractRepeats(list: List<String>): Map<String, Int> {
 fun hasAnagrams(words: List<String>): Boolean {
     var size = words.size
     var setOfWords = mutableSetOf<MutableList<Char>>()
-    for (i in 0 until words.size)
-        setOfWords.add(words[i].toMutableList().sorted() as MutableList<Char>)
-    return (size != setOfWords.size)
+    var numOfEmpty = 0
+    for (i in 0 until size) {
+        if (words[i].isEmpty())
+            numOfEmpty++
+        else
+            setOfWords.add(words[i].toMutableList().sorted() as MutableList<Char>)
+    }
+        return (size != setOfWords.size || numOfEmpty > 1)
 }
 /**
  * Сложная
@@ -299,12 +312,25 @@ fun hasAnagrams(words: List<String>): Boolean {
  *   findSumOfTwo(listOf(1, 2, 3), 4) -> Pair(0, 2)
  *   findSumOfTwo(listOf(1, 2, 3), 6) -> Pair(-1, -1)
  */
+fun indexOfNext(list: List<Int>, num: Int): Int {
+    var i = 0
+    while (list.elementAt(i) != num && list.size > i - 1)
+        i++
+    i++
+    while (list.elementAt(i) != num && list.size > i)
+        i++
+    return i
+}
+
 fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
-    var setOfNums = list.toSet()
+    var setOfNums = list
     for (element in setOfNums) {
         val newSet = setOfNums - element
         if (number - element in newSet)
-            return list.indexOf(element) to list.indexOf(number - element)
+            return if(number - element != element)
+                list.indexOf(element) to list.indexOf(number - element)
+            else
+                list.indexOf(element) to indexOfNext(list, number - element)
     }
     return -1 to -1
 }

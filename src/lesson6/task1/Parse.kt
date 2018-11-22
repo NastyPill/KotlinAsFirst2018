@@ -3,7 +3,9 @@
 package lesson6.task1
 
 import lesson2.task2.daysInMonth
+import sun.invoke.empty.Empty
 import java.lang.IllegalArgumentException
+import java.lang.StringBuilder
 
 
 /**
@@ -76,7 +78,7 @@ fun main(args: Array<String>) {
  * входными данными.
  */
 val months: List<String> = listOf("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа",
-        "сентрября", "октября", "ноября", "декабря")
+        "сентября", "октября", "ноября", "декабря")
 
 fun dateStrToDigit(str: String): String {
     try {
@@ -162,10 +164,11 @@ fun bestLongJump(jumps: String): Int {
         var listOfJumps = getAllJumps(jumps).split(" ")
         var max = -1
         for (i in 0 until listOfJumps.size) {
-            if (listOfJumps.elementAt(i) == "") break
-            val element = listOfJumps.elementAt(i).toInt()
-            if (max < element)
-                max = element
+            if (listOfJumps.elementAt(i) != "") {
+                val element = listOfJumps.elementAt(i).toInt()
+                if (max < element)
+                    max = element
+            }
         }
         max
     } catch (e: Exception) {
@@ -183,15 +186,34 @@ fun bestLongJump(jumps: String): Int {
  * Прочитать строку и вернуть максимальную взятую высоту (230 в примере).
  * При нарушении формата входной строки вернуть -1.
  */
+
+fun getJumps(str: String): List<String> {
+    val listOfSpec = listOf<Char>(' ', '%', '-', '+')
+    var list = mutableListOf<String>()
+    var i = 0
+    while(i < str.length) {
+        val sb = StringBuilder()
+        while(str[i] != ' ') {
+            sb.append(str[i].toString())
+            i++
+        }
+        while(i < str.length && listOfSpec.contains(str[i])) {
+            if (str[i] == '+')
+                list.add(sb.toString())
+            i++
+        }
+    }
+    return list
+}
+
 fun bestHighJump(jumps: String): Int {
-    return if(Regex("""(\d+(\s*\+*\%*-*)*\s*)+""").matches(jumps)) {
-        val list = jumps.split(" ")
-        var max = -1;
-        for (i in 0 until list.size step 2) {
-            val height = list.elementAt(i).toInt()
-            val tries = list.elementAt(i + 1)
-            if (max < height && tries.contains('+'))
-                max = height
+    return if(Regex("""(\d+(\s*\+*%*-*)*\s*)+""").matches(jumps)) {
+        var max = 0
+        val list = getJumps(jumps)
+        for (i in list) {
+            val element = i.toInt()
+            if (max < element)
+                max = element
         }
         max
     } else
@@ -293,7 +315,8 @@ val romanList = listOf<String>("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", 
 val decimalList = listOf<Int>(1000, 900 ,500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
 
 fun fromRoman(roman: String): Int {
-    return if (Regex("""M*(CM)?(D|(CD))?C{0,3}(XC)?(L|(XL))?X{0,3}(IX)?(V|(IV))?I{0,3}""").matches(roman)) {
+    return if (Regex("""M*(CM)?(D|(CD))?C{0,3}(XC)?(L|(XL))?X{0,3}(IX)?(V|(IV))?I{0,3}""").matches(roman) &&
+            !roman.isEmpty()) {
         var sum = 0
         var i = 0
         while (i < roman.length - 1) {
