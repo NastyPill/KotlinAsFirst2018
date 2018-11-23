@@ -293,7 +293,7 @@ fun hasAnagrams(words: List<String>): Boolean {
         else
             setOfWords.add(words[i].toMutableList().sorted() as MutableList<Char>)
     }
-        return (size != setOfWords.size || numOfEmpty > 1)
+        return (size != setOfWords.size + numOfEmpty || numOfEmpty > 1)
 }
 /**
  * Сложная
