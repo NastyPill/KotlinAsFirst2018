@@ -2,7 +2,9 @@
 
 package lesson7.task1
 
+import java.io.BufferedReader
 import java.io.File
+import java.lang.StringBuilder
 
 /**
  * Пример
@@ -54,7 +56,23 @@ fun alignFile(inputName: String, lineLength: Int, outputName: String) {
  * Регистр букв игнорировать, то есть буквы е и Е считать одинаковыми.
  *
  */
-fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> = TODO()
+fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
+    var result: MutableMap<String, Int> = mutableMapOf()
+    var str = StringBuilder()
+    val reader = File(inputName).bufferedReader()
+    for (line in reader.readLines())
+        str.append(line)
+    for (word in substrings) {
+        var index = 0
+        var res = 0
+        while(str.indexOf(word, index, true) != -1) {
+            res++
+            index = str.indexOf(word, index, true) + 1
+        }
+        result[word] = res
+    }
+    return result
+}
 
 
 /**
