@@ -233,7 +233,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543158634903" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543159582561" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -251,7 +251,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Tests.transliterate">
+  <component name="RunManager" selected="JUnit.Tests.chooseLongestChaoticWord">
     <configuration name="Tests.centerFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="KotlinAsFirst2018" />
       <extension name="coverage">
@@ -268,7 +268,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tests.countSubstrings" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Tests.chooseLongestChaoticWord" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="KotlinAsFirst2018" />
       <extension name="coverage">
         <pattern>
@@ -278,7 +278,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="lesson7.task1" />
       <option name="MAIN_CLASS_NAME" value="lesson7.task1.Tests" />
-      <option name="METHOD_NAME" value="countSubstrings" />
+      <option name="METHOD_NAME" value="chooseLongestChaoticWord" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -333,19 +333,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.Tests.countSubstrings" />
       <item itemvalue="JUnit.Tests.sibilants" />
       <item itemvalue="JUnit.Tests.centerFile" />
       <item itemvalue="JUnit.Tests.top20Words" />
       <item itemvalue="JUnit.Tests.transliterate" />
+      <item itemvalue="JUnit.Tests.chooseLongestChaoticWord" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Tests.chooseLongestChaoticWord" />
         <item itemvalue="JUnit.Tests.transliterate" />
         <item itemvalue="JUnit.Tests.top20Words" />
         <item itemvalue="JUnit.Tests.sibilants" />
         <item itemvalue="JUnit.Tests.centerFile" />
-        <item itemvalue="JUnit.Tests.countSubstrings" />
       </list>
     </recent_temporary>
   </component>
