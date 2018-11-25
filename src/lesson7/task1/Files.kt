@@ -305,20 +305,26 @@ fun transliterate(inputName: String, dictionary: Map<Char, String>, outputName: 
     var map = mutableMapOf<Char, String>()
     for (i in File(inputName).readLines())
         str += i + "\n"
-    val setOfKeys = dictionary.keys
-    for (i in setOfKeys) {
-        map[i.toLowerCase()] = dictionary.getOrDefault(i, "").toLowerCase()
-        map[i.toUpperCase()] = dictionary.getOrDefault(i, "").substring(0, 1).toUpperCase() +
-                dictionary.getOrDefault(i, "").substring(1).toLowerCase()
-        if(i in 'a'..'z' || i in 'A'..'Z' || i in 'а'..'я' || i in 'А'..'Я' ) {
-            str = str.replace(i.toString().toLowerCase(), map.getOrDefault(i.toLowerCase(), ""), false)
-            str = str.replace(i.toString().toUpperCase(), map.getOrDefault(i.toUpperCase(), ""), false)
+    try {
+        val setOfKeys = dictionary.keys
+        for (i in setOfKeys) {
+            map[i.toLowerCase()] = dictionary.getOrDefault(i, "").toLowerCase()
+            map[i.toUpperCase()] = dictionary.getOrDefault(i, "").substring(0, 1).toUpperCase() +
+                    dictionary.getOrDefault(i, "").substring(1).toLowerCase()
+            if (i in 'a'..'z' || i in 'A'..'Z' || i in 'а'..'я' || i in 'А'..'Я') {
+                str = str.replace(i.toString().toLowerCase(), map.getOrDefault(i.toLowerCase(), ""), false)
+                str = str.replace(i.toString().toUpperCase(), map.getOrDefault(i.toUpperCase(), ""), false)
+            } else
+                str = str.replace(i.toString(), map.getOrDefault(i, ""), false)
         }
-        else
-            str = str.replace(i.toString(), map.getOrDefault(i, ""), false)
+        File(outputName).printWriter().use {
+            it.print(str)
+        }
     }
-    File(outputName).printWriter().use {
-        it.print(str)
+    catch (e: Exception) {
+        File(outputName).printWriter().use {
+            it.print(str)
+        }
     }
 }
 
