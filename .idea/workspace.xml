@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="89190242-e18e-46c1-8446-9be2bdb51336" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input/substrings_in1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input/substrings_in1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lesson7/task1/Files.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/lesson7/task1/Files.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/lesson7/task1/Tests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/test/lesson7/task1/Tests.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,13 +45,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="kt" value="7782" />
+          <entry key="kt" value="7786" />
           <entry key="txt" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Kotlin" value="7782" />
+          <entry key="Kotlin" value="7786" />
           <entry key="PLAIN_TEXT" value="15" />
         </counts>
       </usages-collector>
@@ -71,7 +68,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lesson7/task1/Files.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
@@ -83,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/lesson7/task1/Tests.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="67" column="30" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
+            <state relative-caret-position="470">
+              <caret line="101" column="8" selection-start-line="101" selection-start-column="8" selection-end-line="101" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -95,8 +92,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/input/substrings_in1.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="220">
+              <caret line="11" column="25" lean-forward="true" selection-end-line="23" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -145,13 +142,13 @@
         <option value="$PROJECT_DIR$/test/lesson6/task1/Tests.kt" />
         <option value="$PROJECT_DIR$/input/sibilants_in1.txt" />
         <option value="$PROJECT_DIR$/input/trans_in1.txt" />
-        <option value="$PROJECT_DIR$/test/lesson7/task1/Tests.kt" />
-        <option value="$PROJECT_DIR$/input/substrings_in1.txt" />
         <option value="$PROJECT_DIR$/src/lesson7/task1/Files.kt" />
+        <option value="$PROJECT_DIR$/input/substrings_in1.txt" />
+        <option value="$PROJECT_DIR$/test/lesson7/task1/Tests.kt" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="211" />
     <option name="y" value="152" />
     <option name="width" value="1400" />
@@ -260,7 +257,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543173278173" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543173347569" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -390,9 +387,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Tests_chooseLongestChaoticWord - 2018.11.25 at 18h 22m 22s.xml">
-      <configuration name="Tests.chooseLongestChaoticWord" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Tests_chooseLongestChaoticWord - 2018.11.25 at 18h 22m 32s.xml">
       <configuration name="Tests.chooseLongestChaoticWord" configurationId="JUnit" />
     </history-entry>
@@ -420,6 +414,9 @@
     <history-entry file="Tests_countSubstrings - 2018.11.25 at 22h 14m 39s.xml">
       <configuration name="Tests.countSubstrings" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Tests_countSubstrings - 2018.11.25 at 22h 15m 08s.xml">
+      <configuration name="Tests.countSubstrings" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -431,8 +428,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26332623" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -443,12 +439,12 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36659437" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36659437" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.329718" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.39479393" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.39479393" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.329718" />
@@ -576,20 +572,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/input/substrings_in1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/lesson7/task1/Tests.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="67" column="30" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lesson7/task1/Files.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -597,6 +579,20 @@
           <folding>
             <element signature="e#91#227#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/substrings_in1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="25" lean-forward="true" selection-end-line="23" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lesson7/task1/Tests.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="470">
+          <caret line="101" column="8" selection-start-line="101" selection-start-column="8" selection-end-line="101" selection-end-column="8" />
         </state>
       </provider>
     </entry>
