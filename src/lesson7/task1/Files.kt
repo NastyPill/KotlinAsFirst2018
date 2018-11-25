@@ -2,6 +2,7 @@
 
 package lesson7.task1
 
+import lesson6.task1.decimalList
 import java.io.BufferedReader
 import java.io.File
 import java.lang.StringBuilder
@@ -196,7 +197,73 @@ fun alignFileByWidth(inputName: String, outputName: String) {
  * Ключи в ассоциативном массиве должны быть в нижнем регистре.
  *
  */
+//fun getAllWords(str: String): List<String> {
+//    var res = mutableListOf<String>()
+//    var i = 0
+//    while(i < str.length) {
+//        var word = ""
+//        while ((str[i] in 'а'..'я' || str[i] in 'А'..'Я' || str[i] in 'a'..'z'
+//                        || str[i] in 'A'..'Z' || str[i] == 'Ё' || str[i] == 'ё')
+//                && i < str.length) {
+//            word += str[i]
+//            i++
+//        }
+//        if(!word.isEmpty())
+//            res.add(word.toLowerCase())
+//        while (i < str.length && str[i] !in 'а'..'я' && str[i] !in 'А'..'Я' && str[i] !in 'a'..'z'
+//                && str[i] !in 'A'..'Z' && str[i] != 'Ё' && str[i] != 'ё')
+//            i++
+//    }
+//    return res
+//}
+
 fun top20Words(inputName: String): Map<String, Int> = TODO()
+//    var str = ""
+//    var resMap = mutableMapOf<String, Int>()
+//    for (i in File(inputName).readLines())
+//        str += i
+//    var listOfWords = getAllWords(str)
+//    var setOfWords = listOfWords.toSet()
+//    return if (setOfWords.size <= 20) {
+//        for (i in setOfWords) {
+//            var ctr = 0
+//            for(j in listOfWords)
+//                if (j == i)
+//                    ctr++
+//            if(ctr > 1)
+//            resMap[i] = ctr
+//        }
+//        resMap
+//    }
+//    else
+//    {
+//        var tempMap = mutableMapOf<String, Int>()
+//        for (i in setOfWords) {
+//            tempMap[i] = 0
+//        }
+//        for((key, value) in tempMap) {
+//            var ctr = 0
+//            for(j in listOfWords)
+//                if (j == key)
+//                    ctr++
+//            tempMap[key] = ctr
+//        }
+//        for(i in 0..19) {
+//            var max = -1
+//            var k = ""
+//            for((key,value) in tempMap) {
+//                if(value > max) {
+//                    max = value
+//                    k = key
+//                }
+//            }
+//            if(max > 1)
+//            resMap[k] = max
+//            tempMap.remove(k)
+//        }
+//        resMap
+//    }
+//}
 
 /**
  * Средняя
@@ -234,8 +301,27 @@ fun top20Words(inputName: String): Map<String, Int> = TODO()
  * Обратите внимание: данная функция не имеет возвращаемого значения
  */
 fun transliterate(inputName: String, dictionary: Map<Char, String>, outputName: String) {
-    TODO()
+    var str = ""
+    var map = mutableMapOf<Char, String>()
+    for (i in File(inputName).readLines())
+        str += i + "\n"
+    val setOfKeys = dictionary.keys
+    for (i in setOfKeys) {
+        map[i.toLowerCase()] = dictionary.getOrDefault(i, "").toLowerCase()
+        map[i.toUpperCase()] = dictionary.getOrDefault(i, "").substring(0, 1).toUpperCase() +
+                dictionary.getOrDefault(i, "").substring(1).toLowerCase()
+        if(i in 'a'..'z' || i in 'A'..'Z' || i in 'а'..'я' || i in 'А'..'Я' ) {
+            str = str.replace(i.toString().toLowerCase(), map.getOrDefault(i.toLowerCase(), ""), false)
+            str = str.replace(i.toString().toUpperCase(), map.getOrDefault(i.toUpperCase(), ""), false)
+        }
+        else
+            str = str.replace(i.toString(), map.getOrDefault(i, ""), false)
+    }
+    File(outputName).printWriter().use {
+        it.print(str)
+    }
 }
+
 
 /**
  * Средняя

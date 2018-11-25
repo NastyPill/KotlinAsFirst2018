@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="89190242-e18e-46c1-8446-9be2bdb51336" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lesson7/task1/Files.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/lesson7/task1/Files.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,7 +33,7 @@
           <entry key="adoc" value="2" />
           <entry key="java" value="1" />
           <entry key="kt" value="15" />
-          <entry key="txt" value="3" />
+          <entry key="txt" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -40,17 +41,19 @@
           <entry key="AsciiDoc" value="2" />
           <entry key="JAVA" value="1" />
           <entry key="Kotlin" value="15" />
-          <entry key="PLAIN_TEXT" value="3" />
+          <entry key="PLAIN_TEXT" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="kt" value="4480" />
+          <entry key="kt" value="6085" />
+          <entry key="txt" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Kotlin" value="4480" />
+          <entry key="Kotlin" value="6085" />
+          <entry key="PLAIN_TEXT" value="11" />
         </counts>
       </usages-collector>
     </session>
@@ -60,8 +63,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/lesson7/task1/Files.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="109" column="25" selection-start-line="109" selection-start-column="25" selection-end-line="109" selection-end-column="25" />
+            <state relative-caret-position="320">
+              <caret line="210" column="38" selection-start-line="210" selection-start-column="38" selection-end-line="210" selection-end-column="38" />
               <folding>
                 <element signature="e#91#194#0" expanded="true" />
               </folding>
@@ -84,8 +87,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/lesson7/task1/Tests.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="70" selection-start-line="70" selection-end-line="70" />
+            <state relative-caret-position="-942">
+              <caret line="78" column="2" lean-forward="true" selection-start-line="78" selection-start-column="2" selection-end-line="78" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -105,6 +108,7 @@
     <findStrings>
       <find>findsum</find>
       <find>finds</find>
+      <find>(\s|,|,|!)+и(\s|,|,|!)+</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -121,6 +125,7 @@
         <option value="$PROJECT_DIR$/test/lesson6/task1/Tests.kt" />
         <option value="$PROJECT_DIR$/input/substrings_in1.txt" />
         <option value="$PROJECT_DIR$/test/lesson7/task1/Tests.kt" />
+        <option value="$PROJECT_DIR$/input/sibilants_in1.txt" />
         <option value="$PROJECT_DIR$/src/lesson7/task1/Files.kt" />
       </list>
     </option>
@@ -228,7 +233,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543158920600" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543157782253" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -246,7 +251,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Tests.sibilants">
+  <component name="RunManager" selected="JUnit.Tests.transliterate">
     <configuration name="Tests.centerFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="KotlinAsFirst2018" />
       <extension name="coverage">
@@ -279,38 +284,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tests.flattenPhoneNumber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="KotlinAsFirst2018" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="lesson6.task1.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="lesson6.task1" />
-      <option name="MAIN_CLASS_NAME" value="lesson6.task1.Tests" />
-      <option name="METHOD_NAME" value="flattenPhoneNumber" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Tests.hasAnagrams" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="KotlinAsFirst2018" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="lesson5.task1.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="lesson5.task1" />
-      <option name="MAIN_CLASS_NAME" value="lesson5.task1.Tests" />
-      <option name="METHOD_NAME" value="hasAnagrams" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Tests.sibilants" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="KotlinAsFirst2018" />
       <extension name="coverage">
@@ -327,20 +300,52 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Tests.top20Words" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="KotlinAsFirst2018" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lesson7.task1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="lesson7.task1" />
+      <option name="MAIN_CLASS_NAME" value="lesson7.task1.Tests" />
+      <option name="METHOD_NAME" value="top20Words" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tests.transliterate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="KotlinAsFirst2018" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lesson7.task1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="lesson7.task1" />
+      <option name="MAIN_CLASS_NAME" value="lesson7.task1.Tests" />
+      <option name="METHOD_NAME" value="transliterate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="JUnit.Tests.hasAnagrams" />
-      <item itemvalue="JUnit.Tests.flattenPhoneNumber" />
       <item itemvalue="JUnit.Tests.countSubstrings" />
       <item itemvalue="JUnit.Tests.sibilants" />
       <item itemvalue="JUnit.Tests.centerFile" />
+      <item itemvalue="JUnit.Tests.top20Words" />
+      <item itemvalue="JUnit.Tests.transliterate" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Tests.transliterate" />
+        <item itemvalue="JUnit.Tests.top20Words" />
         <item itemvalue="JUnit.Tests.sibilants" />
         <item itemvalue="JUnit.Tests.centerFile" />
         <item itemvalue="JUnit.Tests.countSubstrings" />
-        <item itemvalue="JUnit.Tests.flattenPhoneNumber" />
-        <item itemvalue="JUnit.Tests.hasAnagrams" />
       </list>
     </recent_temporary>
   </component>
@@ -358,35 +363,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Tests_sibilants - 2018.11.25 at 18h 31m 34s.xml">
+    <history-entry file="Tests_sibilants - 2018.11.25 at 18h 15m 22s.xml">
       <configuration name="Tests.sibilants" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Tests_sibilants - 2018.11.25 at 18h 32m 38s.xml">
+    <history-entry file="Tests_sibilants - 2018.11.25 at 18h 15m 54s.xml">
       <configuration name="Tests.sibilants" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Tests_sibilants - 2018.11.25 at 18h 34m 20s.xml">
-      <configuration name="Tests.sibilants" configurationId="JUnit" />
+    <history-entry file="Tests_top20Words - 2018.11.25 at 18h 46m 50s.xml">
+      <configuration name="Tests.top20Words" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Tests_sibilants - 2018.11.25 at 18h 34m 41s.xml">
-      <configuration name="Tests.sibilants" configurationId="JUnit" />
+    <history-entry file="Tests_top20Words - 2018.11.25 at 18h 47m 39s.xml">
+      <configuration name="Tests.top20Words" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Tests_sibilants - 2018.11.25 at 18h 35m 03s.xml">
-      <configuration name="Tests.sibilants" configurationId="JUnit" />
+    <history-entry file="Tests_top20Words - 2018.11.25 at 18h 47m 59s.xml">
+      <configuration name="Tests.top20Words" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Tests_sibilants - 2018.11.25 at 18h 35m 40s.xml">
-      <configuration name="Tests.sibilants" configurationId="JUnit" />
+    <history-entry file="Tests_top20Words - 2018.11.25 at 18h 49m 22s.xml">
+      <configuration name="Tests.top20Words" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Tests_sibilants - 2018.11.25 at 18h 38m 04s.xml">
-      <configuration name="Tests.sibilants" configurationId="JUnit" />
+    <history-entry file="Tests_top20Words - 2018.11.25 at 18h 49m 51s.xml">
+      <configuration name="Tests.top20Words" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Tests_countSubstrings - 2018.11.25 at 18h 38m 40s.xml">
-      <configuration name="Tests.countSubstrings" configurationId="JUnit" />
+    <history-entry file="Tests_top20Words - 2018.11.25 at 18h 50m 18s.xml">
+      <configuration name="Tests.top20Words" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Tests_centerFile - 2018.11.25 at 18h 38m 48s.xml">
-      <configuration name="Tests.centerFile" configurationId="JUnit" />
+    <history-entry file="Tests_top20Words - 2018.11.25 at 18h 50m 42s.xml">
+      <configuration name="Tests.top20Words" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Tests_sibilants - 2018.11.25 at 18h 39m 03s.xml">
-      <configuration name="Tests.sibilants" configurationId="JUnit" />
+    <history-entry file="Tests_top20Words - 2018.11.25 at 18h 51m 15s.xml">
+      <configuration name="Tests.top20Words" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -400,6 +405,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26332623" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -410,12 +416,12 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.36659437" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36659437" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.329718" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.329718" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.329718" />
@@ -506,13 +512,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/input/substrings_in1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="25" lean-forward="true" selection-end-line="23" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tutorial/chapter07.adoc">
       <provider selected="true" editor-type-id="split-provider[text-editor;AsciiDocPreviewEditor]">
         <state split_layout="SPLIT">
@@ -523,20 +522,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/input/substrings_in1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="25" lean-forward="true" selection-end-line="23" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/input/sibilants_in1.txt">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" column="3" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/lesson7/task1/Tests.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="70" selection-start-line="70" selection-end-line="70" />
+        <state relative-caret-position="-942">
+          <caret line="78" column="2" lean-forward="true" selection-start-line="78" selection-start-column="2" selection-end-line="78" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lesson7/task1/Files.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="109" column="25" selection-start-line="109" selection-start-column="25" selection-end-line="109" selection-end-column="25" />
+        <state relative-caret-position="320">
+          <caret line="210" column="38" selection-start-line="210" selection-start-column="38" selection-end-line="210" selection-end-column="38" />
           <folding>
             <element signature="e#91#194#0" expanded="true" />
           </folding>
