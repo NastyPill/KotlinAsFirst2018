@@ -368,11 +368,7 @@ fun chooseLongestChaoticWord(inputName: String, outputName: String) {
         for (i in 0 until size)
             if (list[i].length > maxLen)
                 maxLen = list[i].length
-        for (i in 0 until size - 1)
-            if (list[i].length < maxLen) {
-                list.removeAt(i)
-                size--
-            }
+    list.removeIf { it.length < maxLen}
         File(outputName).printWriter().use {
             if (list.size > 1) {
                 for (i in 0 until list.size - 1)
