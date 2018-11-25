@@ -89,11 +89,26 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
  * Исключения (жюри, брошюра, парашют) в рамках данного задания обрабатывать не нужно
  *
  */
-val list: List<Pair<String, String>> = listOf("ЖЫ" to "ЖИ", "ЖЯ" to "ЖА", "ЖЮ" to "ЖУ", "ЧЫ" to "ЧИ", "ЧЯ" to "ЧА",
-        "ЧЮ" to "ЧУ", "ШЫ" to "ШИ", "ШЯ" to "ША", "ШЮ" to "ШУ", "ЩЫ" to "ЩИ", "ЩЯ" to "ЩА", "ЩЮ" to "ЩУ")
+val listRus: List<Pair<String, String>> = listOf(
+        "ЖЫ" to "ЖИ", "ЖЯ" to "ЖА", "ЖЮ" to "ЖУ", "ЧЫ" to "ЧИ", "ЧЯ" to "ЧА", "ЧЮ" to "ЧУ",
+        "ШЫ" to "ШИ", "ШЯ" to "ША", "ШЮ" to "ШУ", "ЩЫ" to "ЩИ", "ЩЯ" to "ЩА", "ЩЮ" to "ЩУ",
+        "жЫ" to "жИ", "жЯ" to "жА", "жЮ" to "жУ", "чЫ" to "чИ", "чЯ" to "чА", "чЮ" to "чУ",
+        "шЫ" to "шИ", "шЯ" to "шА", "шЮ" to "шУ", "щЫ" to "щИ", "щЯ" to "щА", "щЮ" to "щУ",
+        "Жы" to "Жи", "Жя" to "Жа", "Жю" to "Жу", "Чы" to "Чи", "Чя" to "Ча", "Чю" to "Чу",
+        "Шы" to "Ши", "Шя" to "Ша", "Шю" to "Шу", "Щы" to "Щи", "Щя" to "Ща", "Щю" to "Щу",
+        "жы" to "жи", "жя" to "жа", "жю" to "жу", "чы" to "чи", "чя" to "ча", "чю" to "чу",
+        "шы" to "ши", "шя" to "ша", "шю" to "шу", "щы" to "щи", "щя" to "ща", "щю" to "щу")
 
 fun sibilants(inputName: String, outputName: String) {
-    TODO()
+    var string = ""
+    for (i in File(inputName).readLines())
+        string += i
+    for (i in listRus) {
+        string = string.replace(i.first, i.second)
+    }
+    File(inputName).printWriter().use {
+        it.println(string)
+    }
 }
 
 /**
