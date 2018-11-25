@@ -312,8 +312,10 @@ fun transliterate(inputName: String, dictionary: Map<Char, String>, outputName: 
             map[i.toUpperCase()] = dictionary.getOrDefault(i, "").substring(0, 1).toUpperCase() +
                     dictionary.getOrDefault(i, "").substring(1).toLowerCase()
             if (i in 'a'..'z' || i in 'A'..'Z' || i in 'а'..'я' || i in 'А'..'Я') {
-                str = str.replace(i.toString().toLowerCase(), map.getOrDefault(i.toLowerCase(), ""), false)
-                str = str.replace(i.toString().toUpperCase(), map.getOrDefault(i.toUpperCase(), ""), false)
+                str = str.replace(i.toString().toLowerCase(),
+                        map.getOrDefault(i.toLowerCase(), ""), false)
+                str = str.replace(i.toString().toUpperCase(),
+                        map.getOrDefault(i.toUpperCase(), ""), false)
             } else
                 str = str.replace(i.toString(), map.getOrDefault(i, ""), false)
         }
@@ -354,28 +356,33 @@ fun transliterate(inputName: String, dictionary: Map<Char, String>, outputName: 
  * Обратите внимание: данная функция не имеет возвращаемого значения
  */
 fun chooseLongestChaoticWord(inputName: String, outputName: String) {
-    var list = File(inputName).readLines() as MutableList
-    var i = 0
-    list.removeIf { it.length != it.toLowerCase().toSet().size }
-    var maxLen = -1
-    var size = list.size
+    try {
+        var list = File(inputName).readLines() as MutableList
+        list.removeIf { it.length != it.toLowerCase().toSet().size }
+        var maxLen = -1
+        var size = list.size
 
-    for (i in 0 until size)
-        if(list[i].length > maxLen)
-            maxLen = list[i].length
-    for (i in 0 until size - 1)
-        if(list[i].length < maxLen) {
-            list.removeAt(i)
-            size--
+        for (i in 0 until size)
+            if (list[i].length > maxLen)
+                maxLen = list[i].length
+        for (i in 0 until size - 1)
+            if (list[i].length < maxLen) {
+                list.removeAt(i)
+                size--
+            }
+        File(outputName).printWriter().use {
+            if (list.size > 1) {
+                for (i in 0 until list.size - 1)
+                    it.print(list[i] + ", ")
+                it.print(list.last())
+            } else
+                it.print(list.last())
         }
-    File(outputName).printWriter().use {
-        if (list.size > 1) {
-            for (i in 0 until list.size - 1)
-                it.print(list[i] + ", ")
-            it.print(list.last())
+    }
+    catch (e: Exception) {
+        File(outputName).printWriter().use {
+            it.print("")
         }
-        else
-            it.print(list.last())
     }
 }
 
