@@ -100,15 +100,14 @@ val listRus: List<Pair<String, String>> = listOf(
         "шы" to "ши", "шя" to "ша", "шю" to "шу", "щы" to "щи", "щя" to "ща", "щю" to "щу")
 
 fun sibilants(inputName: String, outputName: String) {
-    var string = ""
-    for (i in File(inputName).readLines())
-        string += i
-    for (i in listRus) {
-        string = string.replace(i.first, i.second)
+    var string = File(inputName).readLines() as MutableList<String>
+    var writer = File(outputName).printWriter()
+    for (i in 0 until string.size) {
+        for (j in listRus)
+            string[i] = string[i].replace(j.first, j.second)
+        writer.println(string[i])
     }
-    File(inputName).printWriter().use {
-        it.println(string)
-    }
+    writer.close()
 }
 
 /**
