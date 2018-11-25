@@ -5,6 +5,7 @@ package lesson7.task1
 import java.io.BufferedReader
 import java.io.File
 import java.lang.StringBuilder
+import kotlin.math.max
 
 /**
  * Пример
@@ -88,6 +89,9 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
  * Исключения (жюри, брошюра, парашют) в рамках данного задания обрабатывать не нужно
  *
  */
+val list: List<Pair<String, String>> = listOf("ЖЫ" to "ЖИ", "ЖЯ" to "ЖА", "ЖЮ" to "ЖУ", "ЧЫ" to "ЧИ", "ЧЯ" to "ЧА",
+        "ЧЮ" to "ЧУ", "ШЫ" to "ШИ", "ШЯ" to "ША", "ШЮ" to "ШУ", "ЩЫ" to "ЩИ", "ЩЯ" to "ЩА", "ЩЮ" to "ЩУ")
+
 fun sibilants(inputName: String, outputName: String) {
     TODO()
 }
@@ -110,7 +114,23 @@ fun sibilants(inputName: String, outputName: String) {
  *
  */
 fun centerFile(inputName: String, outputName: String) {
-    TODO()
+    var list: MutableList<String> = mutableListOf()
+    for (i in File(inputName).readLines())
+        list.add(i.trim())
+    var maxLen = -1
+    for (i in list)
+        if(maxLen < i.length)
+            maxLen = i.length
+    for (i in 0 until list.size) {
+        var s = ""
+        for (j in 0 until (maxLen - list[i].length)/2)
+            s+=" "
+        list[i] =  s + list[i]
+    }
+    var writer = File(outputName).printWriter()
+    for (i in 0 until list.size)
+        writer.println(list[i])
+    writer.close()
 }
 
 /**
