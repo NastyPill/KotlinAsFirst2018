@@ -206,7 +206,7 @@ fun getJumps(str: String): List<String> {
     return list
 }
 
-//fun bestHighJump(jumps: String): Int {
+fun bestHighJump(jumps: String): Int = TODO()
 //    return if(Regex("""(\d+(\s*\+*%*-*)*\s*)+""").matches(jumps)) {
 ////        var max = -1
 ////        val list = getJumps(jumps)
