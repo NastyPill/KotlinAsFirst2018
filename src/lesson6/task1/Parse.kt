@@ -206,19 +206,20 @@ fun getJumps(str: String): List<String> {
     return list
 }
 
-fun bestHighJump(jumps: String): Int {
-    return if(Regex("""(\d+(\s*\+*%*-*)*\s*)+""").matches(jumps)) {
-        var max = -1
-        val list = getJumps(jumps)
-        for (i in list) {
-            val element = i.toInt()
-            if (max < element)
-                max = element
-        }
-        max
-    } else
-        -1
-}
+//fun bestHighJump(jumps: String): Int {
+//    return if(Regex("""(\d+(\s*\+*%*-*)*\s*)+""").matches(jumps)) {
+////        var max = -1
+////        val list = getJumps(jumps)
+////        for (i in list) {
+////            val element = i.toInt()
+////            if (max < element)
+////                max = element
+////        }
+//        var max = 1
+//        max
+//    } else
+//        -1
+//}
 
 /**
  * Сложная

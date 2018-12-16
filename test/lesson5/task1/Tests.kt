@@ -146,7 +146,7 @@ class Tests {
         )
         assertEquals(
                 mapOf(3 to listOf("Семён", "Михаил", "Марат")),
-                buildGrades(mapOf("Марат" to 3, "Семён" to 3, "Михаил" to 3))
+                buildGrades(mapOf("Семён" to 3,  "Михаил" to 3, "Марат" to 3))
         )
     }
 

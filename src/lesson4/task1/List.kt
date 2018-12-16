@@ -211,16 +211,16 @@ fun accumulate(list: MutableList<Double>): MutableList<Double> {
 fun factorize(n: Int): List<Int> {
     var number = n
     val result = mutableListOf<Int>()
-        for (i in 2..n) {
-            var bool = (number % i == 0)
-            while (bool) {
-                result.add(i)
-                number /= i
-                bool = (number % i == 0)
-            }
-            if (number < i)
-                break
+    for (i in 2..n) {
+        var bool = (number % i == 0)
+        while (bool) {
+            result.add(i)
+            number /= i
+            bool = (number % i == 0)
         }
+        if (number < i)
+            break
+    }
     return result
 }
 
@@ -243,15 +243,10 @@ fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*
 fun convert(n: Int, base: Int): List<Int> {
     var number = n
     val result: MutableList<Int> = mutableListOf()
-    if (number == 0) {
-        result.add(0, 0)
-        return result
-    }
-    //я долго думал, как перестроить цикл, так ничего и не придумал
-    while (number > 0) {
+    do {
         result.add(number % base)
         number /= base
-    }
+    } while (number > 0)
     return result.reversed()
 }
 
@@ -264,20 +259,17 @@ fun convert(n: Int, base: Int): List<Int> {
  * Например: n = 100, base = 4 -> 1210, n = 250, base = 14 -> 13c
  */
 
-//Исправлю немного позже (постараюсь до дэдлайна)
-
 fun convertToString(n: Int, base: Int): String {
-    val result: MutableList<String> = mutableListOf()
+    var result: MutableList<String> = mutableListOf()
     val convertInDec = convert(n, base)
-    val num = 'a'.toInt()
-    for (i in 0 until convert(n, base).size) {
-        if (convertInDec[i] >= 10)
-            result.add((num - 10 + convertInDec[i]).toChar().toString())
+    result = convertInDec.map {
+        if (it >= 10)
+            ('a' - 10 + it).toString()
         else
-            result.add(convertInDec[i].toString())
+            it.toString()
+    } as MutableList<String>
+            return result.joinToString(separator = "")
     }
-    return result.joinToString(separator = "")
-}
 
 /**
  * Средняя

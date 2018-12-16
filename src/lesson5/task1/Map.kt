@@ -114,7 +114,6 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
  *     -> mapOf(5 to listOf("Семён", "Михаил"), 3 to listOf("Марат"))
  */
 fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> = grades.toList().groupBy({it.second}, {it.first})
-        .mapValues {it.value.sortedByDescending { it }}
 
 /**
  * Простая
@@ -126,9 +125,16 @@ fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> = grades.toLis
  *   containsIn(mapOf("a" to "z"), mapOf("a" to "z", "b" to "sweet")) -> true
  *   containsIn(mapOf("a" to "z"), mapOf("a" to "zee", "b" to "sweet")) -> false
  */
-fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean = b.keys.toList().containsAll(a.keys.toList())
-        && b.values.toList().containsAll(a.values.toList())
-
+fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean {
+    return if (b.keys.containsAll(a.keys)) {
+        for (i in a.keys)
+            if (a.getOrDefault(i, "").compareTo(b.getOrDefault(i, "")) != 0)
+                return false
+        true
+    }
+    else
+        false
+}
 /**
  * Средняя
  *
@@ -141,10 +147,14 @@ fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean = b.keys
  */
 fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Double> {
     var temp: MutableMap<String, Double> = mutableMapOf()
+    var utilMap: MutableMap<String, Pair<Double, Int>> = mutableMapOf()
     var res: MutableMap<String, Double> = mutableMapOf()
-    for (i in 0 until stockPrices.size)
+    for(i in 0 until stockPrices.size) {
         temp[stockPrices[i].first] = 0.0
-    for((key, value) in temp) {
+        utilMap[stockPrices[i].first] = Pair(0.0, 0)
+    }
+
+    for(key in temp.keys) {
         var sum = 0.0
         var ctr = 0
         for (i in 0 until stockPrices.size) {
@@ -287,13 +297,10 @@ fun hasAnagrams(words: List<String>): Boolean {
     var size = words.size
     var setOfWords = mutableSetOf<MutableList<Char>>()
     var numOfEmpty = 0
-    for (i in 0 until size) {
-        if (words[i].isEmpty())
-            numOfEmpty++
-        else
-            setOfWords.add(words[i].toMutableList().sorted() as MutableList<Char>)
-    }
-        return (size != setOfWords.size + numOfEmpty || numOfEmpty > 1)
+   for (i in 0 until size)
+       setOfWords.add(words[i].toMutableList().apply { sort() })
+
+    return (size != setOfWords.size + numOfEmpty || numOfEmpty > 1)
 }
 /**
  * Сложная
@@ -323,9 +330,9 @@ fun indexOfNext(list: List<Int>, num: Int): Int {
 }
 
 fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
-    var setOfNums = list
-    for (element in setOfNums) {
-        val newSet = setOfNums - element
+    var listOfNums = list
+    for (element in listOfNums) {
+        val newSet = listOfNums - element
         if (number - element in newSet)
             return if(number - element != element)
                 list.indexOf(element) to list.indexOf(number - element)
