@@ -134,7 +134,7 @@ fun diameter(vararg points: Point): Segment {
  */
 fun circleByDiameter(diameter: Segment): Circle =
         Circle(Point((diameter.begin.x + diameter.end.x)/2, (diameter.begin.y + diameter.end.y)/2),
-                sqrt(sqr(diameter.begin.x + diameter.end.x) + sqr(diameter.begin.y + diameter.end.y))/2)
+                sqrt(sqr(diameter.begin.x - diameter.end.x) + sqr(diameter.begin.y - diameter.end.y))/2)
 
 /**
  * Прямая, заданная точкой point и углом наклона angle (в радианах) по отношению к оси X.
