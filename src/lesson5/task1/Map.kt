@@ -126,14 +126,10 @@ fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> = grades.toLis
  *   containsIn(mapOf("a" to "z"), mapOf("a" to "zee", "b" to "sweet")) -> false
  */
 fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean {
-    return if (b.keys.containsAll(a.keys)) {
-        for (i in a.keys)
-            if (a.getOrDefault(i, "").compareTo(b.getOrDefault(i, "")) != 0)
-                return false
-        true
-    }
-    else
-        false
+    for (i in a.keys)
+        if (a.getOrDefault(i, "") != (b.getOrDefault(i, "")))
+            return false
+    return true
 }
 /**
  * Средняя
@@ -296,11 +292,10 @@ fun extractRepeats(list: List<String>): Map<String, Int> {
 fun hasAnagrams(words: List<String>): Boolean {
     var size = words.size
     var setOfWords = mutableSetOf<MutableList<Char>>()
-    var numOfEmpty = 0
-   for (i in 0 until size)
-       setOfWords.add(words[i].toMutableList().apply { sort() })
+    for (i in 0 until size)
+        setOfWords.add(words[i].toMutableList().apply { sort() })
 
-    return (size != setOfWords.size + numOfEmpty || numOfEmpty > 1)
+    return size != setOfWords.size
 }
 /**
  * Сложная

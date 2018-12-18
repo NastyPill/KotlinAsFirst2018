@@ -260,16 +260,15 @@ fun convert(n: Int, base: Int): List<Int> {
  */
 
 fun convertToString(n: Int, base: Int): String {
-    var result: MutableList<String> = mutableListOf()
     val convertInDec = convert(n, base)
-    result = convertInDec.map {
+    var result: List<String> = convertInDec.map {
         if (it >= 10)
             ('a' - 10 + it).toString()
         else
             it.toString()
-    } as MutableList<String>
-            return result.joinToString(separator = "")
     }
+    return result.joinToString(separator = "")
+}
 
 /**
  * Средняя
