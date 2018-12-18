@@ -127,7 +127,7 @@ fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> = grades.toLis
  */
 fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean {
     for (i in a.keys)
-        if (a.getOrDefault(i, "") != (b.getOrDefault(i, "")))
+        if (a.getOrDefault(i, "").compareTo(b.getOrDefault(i, "")) != 0)
             return false
     return true
 }
